@@ -24,6 +24,9 @@ export interface NewsItemMain {
   source: string;
   subNews?: NewsItemMain[] | null;
 }
+export interface NewsItemMainTable extends NewsItemMain {
+  urlImages?: string;
+}
 
 export interface Images {
   thumbnail: string;

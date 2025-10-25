@@ -1,2 +1,8 @@
-<p>news-item-management works!</p>
-,
+<section>
+  <app-table
+    [columnHeader]="columnHeader"
+    [dataSource]="dataSource()"
+    [isLoading]="isLoading()"
+    (actionEvent)="action($event)"
+  />
+</section>

@@ -1,0 +1,16 @@
+.actions {
+  color: blue;
+  text-align: center;
+}
+
+.button-transparent {
+  background-color: transparent !important;
+  box-shadow: none;
+  border: none;
+}
+
+button.mat-icon-button {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}

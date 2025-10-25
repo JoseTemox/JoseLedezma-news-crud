@@ -1,0 +1,118 @@
+<div class="component-container table-container">
+  @if (isLoading()) {
+    <mat-progress-bar mode="indeterminate" />
+  }
+  <table mat-table [dataSource]="dataTable()">
+    @for (column of displayedColumns; track column) {
+      <ng-container matColumnDef="{{ column }}">
+        @switch (columnHeader()[column].type) {
+          @case (cellType.ACTIONS) {
+            <th
+              *matHeaderCellDef
+              class="truncate-responsive cursor"
+              mat-header-cell
+              style="text-align: center"
+              [matTooltip]="columnHeader()[column].label"
+              [matTooltipPosition]="'above'"
+            >
+              {{ columnHeader()[column].label }}
+            </th>
+            <td *matCellDef="let element; let i = index" mat-cell>
+              <app-actions
+                [element]="element[column]"
+                [index]="i"
+                [row]="element"
+                (actionEvent)="action($event)"
+              />
+            </td>
+          }
+          @case (cellType.LINK) {
+            <th
+              *matHeaderCellDef
+              class="truncate-responsive cursor"
+              mat-header-cell
+              [matTooltip]="columnHeader()[column].label"
+              [matTooltipPosition]="'above'"
+            >
+              {{ columnHeader()[column].label }}
+            </th>
+            <td
+              *matCellDef="let element"
+              class="text-truncate truncate-sm"
+              mat-cell
+              [matTooltip]="element[column]"
+              [matTooltipDisabled]="!columnHeader()[column].showToggle"
+              [matTooltipPosition]="'above'"
+            >
+              <!-- {{ element[column] }} -->
+              <a target="_blank" [href]="element[column]">
+                {{ element[column] }}
+              </a>
+            </td>
+          }
+          @case (cellType.IMAGES) {
+            <th
+              *matHeaderCellDef
+              class="truncate-responsive cursor"
+              mat-header-cell
+              [matTooltip]="columnHeader()[column].label"
+              [matTooltipPosition]="'above'"
+            >
+              {{ columnHeader()[column].label }}
+            </th>
+            <td
+              *matCellDef="let element"
+              class="text-truncate truncate-sm"
+              mat-cell
+              [matTooltip]="element[column]"
+              [matTooltipDisabled]="!columnHeader()[column].showToggle"
+              [matTooltipPosition]="'above'"
+            >
+              <div class="icon">
+                <img
+                  class="size-img"
+                  [alt]="element[column]"
+                  [src]="element[column] | noImage"
+                />
+              </div>
+            </td>
+          }
+          @default {
+            <!-- Header Label Columns -->
+            <th
+              *matHeaderCellDef
+              class="truncate-responsive cursor"
+              mat-header-cell
+              [matTooltip]="columnHeader()[column].label"
+              [matTooltipPosition]="'above'"
+            >
+              {{ columnHeader()[column].label }}
+            </th>
+
+            <!-- Colum row contain -->
+            <td
+              *matCellDef="let element"
+              class="text-truncate truncate-sm"
+              mat-cell
+              [matTooltip]="element[column]"
+              [matTooltipDisabled]="!columnHeader()[column].showToggle"
+              [matTooltipPosition]="'above'"
+            >
+              {{ element[column] }}
+            </td>
+          }
+        }
+      </ng-container>
+    }
+
+    <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
+    <tr
+      *matRowDef="let row; columns: displayedColumns"
+      mat-row
+      [class.expanded]="row.expanded"
+    ></tr>
+  </table>
+  @if (showPaginator()) {
+    <mat-paginator showFirstLastButtons [pageSizeOptions]="[5, 10, 20]" />
+  }
+</div>
