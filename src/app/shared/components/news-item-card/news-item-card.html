@@ -22,17 +22,22 @@
   <mat-card-content class="card__content">
     {{ newsItem().summary }}
   </mat-card-content>
-  <!-- @if (newsItem().hasSubNews) {
+  @if (newsItem().hasSubNews && isDetailsMode()) {
     <mat-card-content class="card__content">
       <mat-list role="list">
         @for (subNewsItem of newsItem().subNews; track subNewsItem) {
-          <mat-list-item role="listitem">{{
-            subNewsItem.mainTitle
-          }}</mat-list-item>
+          <mat-list-item role="listitem">
+            <a
+              rel="noopener noreferrer"
+              target="_blank"
+              [href]="subNewsItem.newsLink"
+              >{{ subNewsItem.mainTitle }}</a
+            >
+          </mat-list-item>
         }
       </mat-list>
     </mat-card-content>
-  } -->
+  }
   <mat-card-actions align="end">
     <button
       matButton="filled"
@@ -42,13 +47,11 @@
       ir
     </button>
   </mat-card-actions>
-  <mat-card-actions align="end">
-    <button
-      matButton="filled"
-      type="button"
-      (click)="goTo(newsItem().newsLink)"
-    >
-      Detalles
-    </button>
-  </mat-card-actions>
+  @if (!isDetailsMode()) {
+    <mat-card-actions align="end">
+      <button matButton="filled" type="button" (click)="goToDetails()">
+        Detalles
+      </button>
+    </mat-card-actions>
+  }
 </mat-card>

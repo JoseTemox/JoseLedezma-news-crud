@@ -1,10 +1,12 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { NewsItemMain } from '../../../interfaces/news.interfaces';
 import { MatCardModule } from '@angular/material/card';
 import { NoImagePipe } from '../../pipes/no-image-pipe';
 import { DatePipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+// import { ModalCardDetailsComponent } from '../modal-card-details/modal-card-details.component';
 
 @Component({
   selector: 'app-news-item-card',
@@ -16,12 +18,28 @@ import { MatListModule } from '@angular/material/list';
     MatListModule,
   ],
   templateUrl: './news-item-card.html',
-  styleUrl: './news-item-card.scss',
+  styleUrls: ['./news-item-card.scss'],
+  standalone: true,
 })
 export class NewsItemCard {
   readonly newsItem = input.required<NewsItemMain>();
+  readonly isDetailsMode = input(false);
+
+  private readonly dialog = inject(MatDialog);
 
   goTo(url: string): void {
     window.open(url, '_blank', 'noopener,noreferrer');
+  }
+  async goToDetails(): Promise<void> {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    // dialogConfig.height = '90%';
+    dialogConfig.data = this.newsItem();
+    console.log(dialogConfig.data);
+    const { ModalCardDetailsComponent } = await import(
+      '../modal-card-details/modal-card-details.component'
+    );
+    const dialogRef = this.dialog.open(ModalCardDetailsComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe();
   }
 }
