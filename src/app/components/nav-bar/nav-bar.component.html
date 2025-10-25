@@ -1,15 +1,19 @@
 <nav class="navbar">
   <div class="navbar__brand">
-    <!--TODO: definir logo  -->
-    <span class="navbar__logo">Logo</span>
+    <span class="navbar__logo"
+      ><img alt="" class="navbar__logo-image" src="/news-logo.png" />
+      News-App</span
+    >
     <button class="navbar__toggle" type="button" (click)="toggleMenu()">
       ☰
     </button>
   </div>
 
   <ul class="navbar__menu" [class.navbar__menu--open]="isMenuOpen()">
-    <!--TODO: definir logo  -->
-    <span class="navbar__logo-span">Logo</span>
+    <span class="navbar__logo-span"
+      ><img alt="" class="navbar__logo-image" src="/news-logo.png" />
+      News-App</span
+    >
 
     @for (route of routes; track route.path) {
       <li class="navbar__item">
