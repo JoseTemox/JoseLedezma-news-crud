@@ -24,7 +24,6 @@ import { JsonPipe } from '@angular/common';
     MatDialogClose,
     MatButtonModule,
     MatIconModule,
-    JsonPipe,
     NewsItemCard,
   ],
   templateUrl: './modal-card-details.component.html',
@@ -33,8 +32,4 @@ import { JsonPipe } from '@angular/common';
 export class ModalCardDetailsComponent {
   private readonly dialogRef = inject(MatDialogRef<ModalCardDetailsComponent>);
   modalData = inject<NewsItemMain>(MAT_DIALOG_DATA);
-
-  // ngOnInit(): void {
-  //   console.log(this.modalData);
-  // }
 }

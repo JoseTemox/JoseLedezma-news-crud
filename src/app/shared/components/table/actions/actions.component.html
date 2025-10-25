@@ -1,0 +1,65 @@
+@if (element.length <= 4) {
+  <div class="actions">
+    @for (item of sortedElement(); track item) {
+      <button
+        class="button-transparent cursor"
+        mat-icon-button
+        type="button"
+        [disabled]="item?.disabled || false"
+        [matTooltip]="item.tooltip"
+        (click)="emitAction(item.name); (item?.disabled === true)"
+      >
+        <mat-icon [ngClass]="{ 'disabled-general-color': item?.disabled }">
+          {{ item.name }}
+        </mat-icon>
+      </button>
+    }
+  </div>
+}
+@if (element.length > 4) {
+  <div class="actions">
+    @for (item of firstActions; track item) {
+      <button
+        class="cursor"
+        mat-icon-button
+        type="button"
+        [disabled]="item?.disabled || false"
+        [matTooltip]="item.tooltip"
+        (click)="emitAction(item.name); (item?.disabled === true)"
+      >
+        <mat-icon
+          class="asd"
+          [ngClass]="{ 'disabled-general-color': item?.disabled }"
+        >
+          {{ item.name }}
+        </mat-icon>
+      </button>
+    }
+    <button
+      class="cursor"
+      mat-icon-button
+      type="button"
+      [matMenuTriggerFor]="menu"
+    >
+      <mat-icon>more_horiz</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      @for (item of secondActions; track item) {
+        <button
+          class="cursor"
+          mat-menu-item
+          type="button"
+          [disabled]="item?.disabled || false"
+          (click)="emitAction(item.name)"
+        >
+          <mat-icon [ngClass]="{ 'disabled-general-color': item?.disabled }">
+            {{ item.name }}
+          </mat-icon>
+          <span [ngClass]="{ 'disabled-general-color': item?.disabled }">
+            {{ item.tooltip }}
+          </span>
+        </button>
+      }
+    </mat-menu>
+  </div>
+}
