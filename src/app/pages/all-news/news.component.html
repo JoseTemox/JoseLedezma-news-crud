@@ -1,2 +1,5 @@
-<p>All News works!</p>
-,
+<section class="cards">
+  @for (newsItem of newsItemList(); track newsItem) {
+    <app-news-item-card [newsItem]="newsItem" />
+  }
+</section>
