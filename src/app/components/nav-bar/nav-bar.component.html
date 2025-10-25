@@ -1,0 +1,25 @@
+<nav class="navbar">
+  <div class="navbar__brand">
+    <!--TODO: definir logo  -->
+    <span class="navbar__logo">Logo</span>
+    <button class="navbar__toggle" type="button" (click)="toggleMenu()">
+      ☰
+    </button>
+  </div>
+
+  <ul class="navbar__menu" [class.navbar__menu--open]="isMenuOpen()">
+    <!--TODO: definir logo  -->
+    <span class="navbar__logo-span">Logo</span>
+
+    @for (route of routes; track route.path) {
+      <li class="navbar__item">
+        <a
+          class="navbar__link"
+          routerLinkActive="text-accent"
+          [routerLink]="route.path"
+          >{{ route.title }}</a
+        >
+      </li>
+    }
+  </ul>
+</nav>
