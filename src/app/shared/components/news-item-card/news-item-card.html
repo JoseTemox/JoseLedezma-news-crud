@@ -10,11 +10,9 @@
       <mat-card-subtitle class="card__subtitle"
         ><b>Date: </b>{{ newsItem().timestamp | date }}</mat-card-subtitle
       >
-      <img
-        class="card__image"
-        mat-card-md-image
-        [alt]="newsItem().mainTitle"
-        [src]="newsItem().images?.smallImageDetailsProxied! | noImage"
+      <app-img-render
+        [newsItemUrl]="newsItem().images?.smallImageDetailsProxied"
+        [title]="newsItem().mainTitle"
       />
     </mat-card-title-group>
   </mat-card-header>

@@ -3,10 +3,7 @@ import {
   NewsItemMain,
   NewsItemMainTable,
 } from '../../interfaces/news.interfaces';
-import { AllNewsMapper } from '../../mappers/all-news-mappers';
-import { alldata } from '../all-news/allData';
 import {
-  Action,
   ActionEmitter,
   CellType,
   ColumnHeader,
@@ -14,7 +11,6 @@ import {
 import { TableComponent } from '../../shared/components/table/table.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalCardDetailsComponent } from '../../shared/components/modal-card-details/modal-card-details.component';
-// import { concatMap, catchError, throwError, takeUntil, of } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { ModalNewsItemAddComponent } from '../../shared/components/modal-news-item/modal-news-item-add.component';
 import { MatButton } from '@angular/material/button';

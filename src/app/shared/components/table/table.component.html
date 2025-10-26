@@ -68,13 +68,14 @@
               [matTooltipDisabled]="!columnHeader()[column].showToggle"
               [matTooltipPosition]="'above'"
             >
-              <div class="icon">
-                <img
-                  class="size-img"
-                  [alt]="element[column]"
-                  [src]="element[column] | noImage"
-                />
-              </div>
+              <app-img-render
+                [height]="'25px'"
+                [marginLeft]="'4px'"
+                [marginRight]="'17px'"
+                [newsItemUrl]="element[column]"
+                [title]="element[column]"
+                [width]="'25px'"
+              />
             </td>
           }
           @default {

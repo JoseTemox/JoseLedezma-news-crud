@@ -1,0 +1,29 @@
+<div
+  class="media"
+  [style.height]="styleHeight"
+  [style.margin-left]="styleMarginLeft"
+  [style.margin-right]="styleMarginRight"
+  [style.width]="styleWidth"
+>
+  <img
+    class="media__image"
+    loading="lazy"
+    mat-card-md-image
+    [alt]="title()"
+    [class.failed()]="failed()"
+    [class.loading()]="loading()"
+    [src]="currentSrc()"
+    (error)="onError()"
+    (load)="onLoaded()"
+  />
+
+  @if (loading() && !loaded()) {
+    <div class="media__spinner">
+      <mat-progress-spinner
+        diameter="32"
+        mode="indeterminate"
+        strokeWidth="6"
+      />
+    </div>
+  }
+</div>

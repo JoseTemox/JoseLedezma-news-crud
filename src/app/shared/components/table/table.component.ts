@@ -21,6 +21,7 @@ import { CellType, ColumnHeader } from './table.interfaces';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NoImagePipe } from '../../pipes/no-image-pipe';
+import { ImgRender } from '../img-render/img-render.component';
 
 @Component({
   selector: 'app-table',
@@ -36,6 +37,7 @@ import { NoImagePipe } from '../../pipes/no-image-pipe';
     MatPaginatorModule,
     MatTooltipModule,
     NoImagePipe,
+    ImgRender,
   ],
   templateUrl: './table.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
