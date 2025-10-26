@@ -1,3 +1,5 @@
+import { Action } from '../shared/components/table/table.interfaces';
+
 /* eslint-disable @typescript-eslint/consistent-type-definitions */
 export interface NewsDtoResponse {
   status: string;
@@ -26,6 +28,8 @@ export interface NewsItemMain {
 }
 export interface NewsItemMainTable extends NewsItemMain {
   urlImages?: string;
+  number?: number;
+  actions?: Action[];
 }
 
 export interface Images {

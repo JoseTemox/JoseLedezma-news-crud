@@ -1,0 +1,177 @@
+:host {
+  display: block;
+}
+
+:root {
+  --nm-gap: 12px;
+  --nm-radius: 8px;
+  --nm-field-height: 44px;
+  --nm-bg: #ffffff;
+  --nm-border: #e6e6e6;
+  --nm-primary: var(--mat-sys-primary, #1976d2);
+  --nm-muted: #666666;
+  --nm-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.news-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nm-gap);
+  padding: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 920px;
+  background: var(--nm-bg);
+  border-radius: var(--nm-radius);
+  box-shadow: var(--nm-shadow);
+  margin-top: 10px;
+
+  .subItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 12px;
+  }
+}
+
+.news-modal__field {
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
+
+  ::ng-deep .mat-form-field {
+    width: 100%;
+  }
+}
+
+.news-modal__images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+
+  .news-modal__field {
+    margin: 0;
+  }
+}
+
+.mat-slide-toggle[formControlName='hasSubNews'] {
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.news-modal__subnews {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+
+  &-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem;
+    align-items: start;
+    padding: 0.5rem;
+    border: 1px solid var(--nm-border);
+    border-radius: 6px;
+    background: #fafafa;
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+      align-items: stretch;
+    }
+
+    button[mat-icon-button] {
+      height: var(--nm-field-height);
+      width: var(--nm-field-height);
+      min-width: 40px;
+      align-self: start;
+    }
+
+    .news-modal__field {
+      margin: 0;
+    }
+  }
+
+  > button[mat-button] {
+    align-self: start;
+    margin-top: 0.25rem;
+  }
+}
+
+.news-modal__actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+
+  button {
+    min-height: var(--nm-field-height);
+    padding: 0 14px;
+  }
+}
+
+.news-modal__images-preview {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+
+  img {
+    height: 56px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid var(--nm-border);
+    background: #f5f5f5;
+  }
+
+  &-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 13px;
+    color: var(--nm-muted);
+  }
+}
+
+.news-modal__field.ng-invalid.ng-touched,
+.news-modal__subnews-item.ng-invalid.ng-touched {
+  ::ng-deep .mat-form-field-outline {
+    border-color: #d32f2f !important;
+  }
+}
+
+:host ::ng-deep {
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    border-radius: 6px;
+  }
+
+  .mat-form-field-wrapper {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .mat-slide-toggle {
+    margin: 6px 0;
+  }
+
+  .mat-pseudo-checkbox,
+  .mat-icon {
+    vertical-align: middle;
+  }
+}
+
+@media (max-width: 920px) {
+  .news-modal__form {
+    padding: 0.75rem;
+    max-width: 100%;
+  }
+
+  .news-modal__images img {
+    height: 48px;
+    width: 84px;
+  }
+}

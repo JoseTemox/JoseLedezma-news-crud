@@ -1,0 +1,138 @@
+<h2 mat-dialog-title><b>News-Item Management</b></h2>
+<mat-dialog-content>
+  <form class="news-modal__form" [formGroup]="form">
+    <mat-form-field appearance="outline" class="news-modal__field">
+      <mat-label>Title</mat-label>
+      <input formControlName="mainTitle" matInput />
+      @if (formUtils.isValidField(form, 'mainTitle')) {
+        <mat-error>{{ formUtils.getFielError(form, 'mainTitle') }}</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="news-modal__field">
+      <mat-label>Summary</mat-label>
+      <textarea formControlName="summary" matInput rows="3"></textarea>
+      @if (formUtils.isValidField(form, 'summary')) {
+        <mat-error>{{ formUtils.getFielError(form, 'summary') }}</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="news-modal__field">
+      <mat-label>Date</mat-label>
+      <input formControlName="timestamp" matInput type="date" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="news-modal__field">
+      <mat-label>Url</mat-label>
+      <input formControlName="newsLink" matInput />
+      @if (formUtils.isValidField(form, 'newsLink')) {
+        <mat-error>{{ formUtils.getFielError(form, 'newsLink') }}</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="news-modal__field">
+      <mat-label>Source</mat-label>
+      <input formControlName="source" matInput />
+      @if (formUtils.isValidField(form, 'source')) {
+        <mat-error>{{ formUtils.getFielError(form, 'source') }}</mat-error>
+      }
+    </mat-form-field>
+
+    <div class="news-modal__images" formGroupName="images">
+      <mat-form-field appearance="outline" class="news-modal__field">
+        <mat-label>MainImageUrl</mat-label>
+        <input formControlName="smallImageDetails" matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="news-modal__field">
+        <mat-label>Thumbnail Proxied</mat-label>
+        <input formControlName="smallImageDetailsProxied" matInput />
+      </mat-form-field>
+    </div>
+
+    <mat-slide-toggle
+      formControlName="hasSubNews"
+      (change)="changeValidator($event.checked)"
+      >Has subnews</mat-slide-toggle
+    >
+
+    <div class="news-modal__form" formArrayName="subNews">
+      @for (newsItem of subNews.controls; track $index; let i = $index) {
+        <div [formGroupName]="i">
+          <mat-form-field appearance="outline" class="news-modal__field">
+            <mat-label>Sub Title</mat-label>
+            <input formControlName="mainTitle" matInput />
+            @if (formUtils.isValidFieldNameArray(subNews, i, 'mainTitle')) {
+              <mat-error>{{
+                formUtils.getFielErrorInArray(subNews, i, 'mainTitle')
+              }}</mat-error>
+            }
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="news-modal__field">
+            <mat-label>Sub Summary</mat-label>
+            <textarea formControlName="summary" matInput rows="3"></textarea>
+            @if (formUtils.isValidFieldNameArray(subNews, i, 'summary')) {
+              <mat-error>{{
+                formUtils.getFielErrorInArray(subNews, i, 'summary')
+              }}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="news-modal__field">
+            <mat-label>Sub News URL</mat-label>
+            <input formControlName="newsLink" matInput />
+            @if (formUtils.isValidFieldNameArray(subNews, i, 'newsLink')) {
+              <mat-error>{{
+                formUtils.getFielErrorInArray(subNews, i, 'newsLink')
+              }}</mat-error>
+            }
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="news-modal__field">
+            <mat-label>Source</mat-label>
+            <input formControlName="source" matInput />
+            @if (formUtils.isValidFieldNameArray(subNews, i, 'source')) {
+              <mat-error>{{
+                formUtils.getFielErrorInArray(subNews, i, 'source')
+              }}</mat-error>
+            }
+          </mat-form-field>
+          <div class="news-modal__images" formGroupName="images">
+            <mat-form-field appearance="outline" class="news-modal__field">
+              <mat-label>MainImageUrl</mat-label>
+              <input formControlName="smallImageDetails" matInput />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="news-modal__field">
+              <mat-label>Thumbnail Proxied</mat-label>
+              <input formControlName="smallImageDetailsProxied" matInput />
+            </mat-form-field>
+          </div>
+          <div class="subItem">
+            <button matFab type="button" (click)="removeSubNews(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+          <mat-divider style="margin: 13px" />
+        </div>
+      }
+      @if (hasSubNews) {
+        <button mat-button type="button" (click)="addSubnews()">
+          Add subnews
+        </button>
+      }
+    </div>
+
+    <div class="news-modal__actions">
+      <button mat-stroked-button type="button" (click)="cancel()">
+        Cancelar
+      </button>
+      <button color="primary" mat-flat-button type="button" (click)="save()">
+        Guardar
+      </button>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-dialog-close matButton type="button">
+    <mat-icon>cancel</mat-icon>Cancelar
+  </button>
+</mat-dialog-actions>

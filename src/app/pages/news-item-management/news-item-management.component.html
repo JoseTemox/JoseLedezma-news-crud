@@ -1,4 +1,13 @@
 <section>
+  <button
+    matButton="filled"
+    style="margin-top: 10px"
+    type="button"
+    (click)="addNew()"
+  >
+    <mat-icon>add_card</mat-icon>
+    Add
+  </button>
   <app-table
     [columnHeader]="columnHeader"
     [dataSource]="dataSource()"

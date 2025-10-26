@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import {
   NewsItemMain,
   NewsItemMainTable,
@@ -12,20 +12,32 @@ import {
   ColumnHeader,
 } from '../../shared/components/table/table.interfaces';
 import { TableComponent } from '../../shared/components/table/table.component';
-import { MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ModalCardDetailsComponent } from '../../shared/components/modal-card-details/modal-card-details.component';
 // import { concatMap, catchError, throwError, takeUntil, of } from 'rxjs';
+import { MatIconModule } from '@angular/material/icon';
+import { ModalNewsItemAddComponent } from '../../shared/components/modal-news-item/modal-news-item-add.component';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-news-item-management',
-  imports: [TableComponent],
+  imports: [TableComponent, MatIconModule, MatButton],
   templateUrl: './news-item-management.component.html',
   styleUrl: './news-item-management.component.scss',
 })
 export default class NewsItemManagementComponent {
-  allData = AllNewsMapper.mapNewsItemToNewsItemMainArray(
-    alldata
-  ) as NewsItemMain[];
-  newsItemList = signal<NewsItemMain[]>(this.allData);
+  allData = (
+    AllNewsMapper.mapNewsItemToNewsItemMainArray(alldata) as NewsItemMain[]
+  ).map((item, index) => {
+    return {
+      ...item,
+      urlImages: item.images?.smallImageDetailsProxied,
+      number: index + 1,
+      actions: this.actions,
+    };
+  });
+  private readonly dialog = inject(MatDialog);
+  readonly newsItemList = signal<NewsItemMain[]>(this.allData);
   columnHeader: ColumnHeader = {
     number: { label: 'Number #' },
     mainTitle: { label: 'Title', showToggle: true },
@@ -38,16 +50,7 @@ export default class NewsItemManagementComponent {
       type: CellType.ACTIONS,
     },
   };
-  readonly dataSource = signal<NewsItemMainTable[]>(
-    this.allData.map((item, index) => {
-      return {
-        ...item,
-        urlImages: item.images?.smallImageDetailsProxied,
-        number: index + 1,
-        actions: this.actions,
-      };
-    })
-  );
+  readonly dataSource = signal<NewsItemMainTable[]>(this.allData);
   readonly isLoading = signal(false);
 
   actionHandler: {
@@ -57,13 +60,19 @@ export default class NewsItemManagementComponent {
     ) => void;
   } = {
     edit: (event: ActionEmitter, dialogConfig: MatDialogConfig) => {
-      console.log('Edit');
+      this.addNew(event.row());
     },
     delete: (event: ActionEmitter) => {
       console.log('delete');
     },
     find_in_page: (event: ActionEmitter, dialogConfig: MatDialogConfig) => {
-      console.log('detail');
+      dialogConfig.disableClose = false;
+      dialogConfig.data = event.row() as NewsItemMain;
+      const dialogref = this.dialog.open(
+        ModalCardDetailsComponent,
+        dialogConfig
+      );
+      // dialogref.afterClosed().subscribe();
     },
   };
 
@@ -74,5 +83,31 @@ export default class NewsItemManagementComponent {
   action(event: ActionEmitter): void {
     const dialogConfig = new MatDialogConfig();
     this.actionHandler[event.action](event, dialogConfig);
+  }
+
+  addNew(data?: NewsItemMain): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.data = data ?? null;
+    const dialogRef = this.dialog.open(ModalNewsItemAddComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe((modalResponse: NewsItemMainTable) => {
+      console.log(modalResponse?.number);
+      if (modalResponse && modalResponse?.number === null) {
+        console.log('****');
+        this.dataSource.update((list) =>
+          [{ ...modalResponse, actions: this.actions }, ...list].map(
+            (item, index) => ({ ...item, number: index + 1 })
+          )
+        );
+      }
+      if (modalResponse && modalResponse.number !== null) {
+        console.log('update');
+        this.dataSource.update((list) =>
+          list.map((item) =>
+            item.number === modalResponse.number ? modalResponse : item
+          )
+        );
+      }
+    });
   }
 }
