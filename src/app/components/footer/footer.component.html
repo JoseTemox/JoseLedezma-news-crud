@@ -1,0 +1,15 @@
+<footer class="app-footer">
+  <div>
+    <div class="app-footer__info-section">
+      <span>Versión: {{ version }}</span>
+      <span>Desarrollado por:</span>
+      <span
+        ><a target="_blank" [href]="url"> {{ developerName }}</a>
+        |
+      </span>
+      <span>
+        <a [href]="'mailto:' + developerEmail">{{ developerEmail }}</a>
+      </span>
+    </div>
+  </div>
+</footer>

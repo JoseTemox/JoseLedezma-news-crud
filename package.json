@@ -1,6 +1,11 @@
 {
-  "name": "crud",
-  "version": "0.0.0",
+  "name": "News-App-Crud",
+  "author": {
+    "name": "Ing. Ms. José Temístocles Ledezma Reyes",
+    "email": "temistoclesledezma@gmail.com",
+    "url": "https://www.linkedin.com/in/josetemox/"
+  },
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
