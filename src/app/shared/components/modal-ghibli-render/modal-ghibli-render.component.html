@@ -15,13 +15,13 @@
   <div class="modal__center">
     @if (iaGeneratorResource.isLoading()) {
       <h3 class="modal__spinner">Generating image from the news title</h3>
-      <mat-spinner class="modal__spinner" [diameter]="72"></mat-spinner>
+      <mat-spinner class="modal__spinner" [diameter]="72" />
     }
 
     @if (iaGeneratorResource.hasValue()) {
       <app-img-render
         [height]="'100%'"
-        [newsItemUrl]="iaGeneratorResource.value()?.originImage"
+        [newsItemUrl]="iaGeneratorResource.value().originImage"
         [width]="'100%'"
       />
     }

@@ -28,7 +28,7 @@ import { rxResource } from '@angular/core/rxjs-interop';
     MatDialogClose,
     MatButtonModule,
     MatIconModule,
-    NewsItemCard,
+
     MatProgressSpinner,
     ImgRender,
   ],
