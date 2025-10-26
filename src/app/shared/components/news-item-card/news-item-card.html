@@ -45,13 +45,23 @@
       type="button"
       (click)="goTo(newsItem().newsLink)"
     >
-      Ir
+      Go
     </button>
   </mat-card-actions>
   @if (!isDetailsMode()) {
     <mat-card-actions align="end">
+      <button matButton="filled" type="button" (click)="generateGhibliIA()">
+        <div class="card__button-action">
+          <span> GHIBLIZE </span>
+          <app-img-render
+            [height]="32"
+            [newsItemUrl]="'./images.jpeg'"
+            [width]="50"
+          />
+        </div>
+      </button>
       <button matButton="filled" type="button" (click)="goToDetails()">
-        Detalles
+        Details
       </button>
     </mat-card-actions>
   }

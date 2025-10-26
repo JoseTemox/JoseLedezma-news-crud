@@ -33,4 +33,18 @@ export class NewsItemCard {
     const dialogRef = this.dialog.open(ModalCardDetailsComponent, dialogConfig);
     dialogRef.afterClosed().subscribe();
   }
+
+  async generateGhibliIA(): Promise<void> {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.data = { newsTitle: this.newsItem().mainTitle };
+    const { ModalGhibliRenderComponent } = await import(
+      '../modal-ghibli-render/modal-ghibli-render.component'
+    );
+
+    const dialogRef = this.dialog.open(
+      ModalGhibliRenderComponent,
+      dialogConfig
+    );
+  }
 }

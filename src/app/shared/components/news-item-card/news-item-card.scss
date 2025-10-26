@@ -15,6 +15,13 @@
   cursor: pointer;
   background: #fff;
 
+  &__button-action {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+  }
+
   &__media {
     position: relative;
     width: 96px;
@@ -42,7 +49,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    // z-index: 5;
   }
   &__title {
     font-size: 1.05rem;

@@ -8,11 +8,14 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end" class="confirm-dialog__actions">
-  <button mat-stroked-button type="button" (click)="cancel()">
-    {{ cancelLabel }}
-  </button>
-
-  <button color="primary" mat-flat-button type="button" (click)="confirm()">
-    {{ confirmLabel }}
-  </button>
+  @if (data?.cancelLabel) {
+    <button mat-stroked-button type="button" (click)="cancel()">
+      {{ cancelLabel }}
+    </button>
+  }
+  @if (data?.confirmLabel) {
+    <button color="primary" mat-flat-button type="button" (click)="confirm()">
+      {{ confirmLabel }}
+    </button>
+  }
 </mat-dialog-actions>

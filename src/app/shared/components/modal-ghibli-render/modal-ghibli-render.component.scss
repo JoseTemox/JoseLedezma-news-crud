@@ -1,0 +1,44 @@
+:host {
+  display: block;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px 24px 16px;
+  min-width: 320px;
+  box-sizing: border-box;
+
+  &__title {
+    margin: 0;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  &__title--danger {
+    color: #c62828;
+  }
+
+  &__center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+
+    padding: 12px 0;
+    @media (max-width: 420px) {
+      gap: 8px;
+      flex-direction: column;
+    }
+  }
+  &__spinner {
+    transform: scale(1);
+    flex: 0 0 auto;
+    @media (max-width: 420px) {
+      transform: scale(0.9);
+    }
+  }
+}

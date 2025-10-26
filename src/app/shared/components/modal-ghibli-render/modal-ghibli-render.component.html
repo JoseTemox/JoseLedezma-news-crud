@@ -1,0 +1,35 @@
+<h2 mat-dialog-title><b>Ghibli IA Image Render</b></h2>
+
+<mat-dialog-content class="modal">
+  <h3 class="modal__title">News-Item-Title: {{ modalData.newsTitle }}</h3>
+
+  @if (iaGeneratorResource.error()) {
+    <h3 class="modal__title--danger">An error has occurred...</h3>
+    <app-img-render
+      [height]="'70%'"
+      [newsItemUrl]="'./no-image.jpg'"
+      [width]="'100%'"
+    />
+  }
+
+  <div class="modal__center">
+    @if (iaGeneratorResource.isLoading()) {
+      <h3 class="modal__spinner">Generating image from the news title</h3>
+      <mat-spinner class="modal__spinner" [diameter]="72"></mat-spinner>
+    }
+
+    @if (iaGeneratorResource.hasValue()) {
+      <app-img-render
+        [height]="'100%'"
+        [newsItemUrl]="iaGeneratorResource.value()?.originImage"
+        [width]="'100%'"
+      />
+    }
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close type="button">
+    <mat-icon>cancel</mat-icon>Cancelar
+  </button>
+</mat-dialog-actions>

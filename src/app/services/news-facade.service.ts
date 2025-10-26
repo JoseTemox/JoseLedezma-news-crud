@@ -1,10 +1,16 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { NewsApiService } from './news-api.service';
 import { AllNewsMapper } from '../mappers/all-news-mappers';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { NewsItemMain, NewsItemMainTable } from '../interfaces/news.interfaces';
 import { Action } from '../shared/components/table/table.interfaces';
 import { LocalStorageService } from './local-storage.service';
+import { IAGeneratorImageService } from './ia-generator-api.service';
+import {
+  GeneratorRequest,
+  ResultElementImage,
+} from '../interfaces/iaGenerator.interface';
+import { IaGeneratorMapper } from '../mappers/iagenerator-mapper';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +18,7 @@ import { LocalStorageService } from './local-storage.service';
 export class NewsFacade {
   private readonly apiService = inject(NewsApiService);
   private readonly localStorageService = inject(LocalStorageService);
+  iaGeneratorService = inject(IAGeneratorImageService);
 
   private readonly loading = signal(false);
   readonly allData = signal<NewsItemMainTable[]>([]);
@@ -61,5 +68,20 @@ export class NewsFacade {
   }
   saveFixedData(data: NewsItemMainTable[]): void {
     this.localStorageService.saveFixedData(data);
+  }
+
+  iaTitleNewsGenerator(title: string): Observable<ResultElementImage> {
+    const data: GeneratorRequest = {
+      prompt: title,
+      style_id: 68,
+      size: '1-1',
+    };
+    return this.iaGeneratorService
+      .create(data)
+      .pipe(
+        map((item) =>
+          IaGeneratorMapper.mapIaGeneratorResponseToResultElement(item)
+        )
+      );
   }
 }
