@@ -41,11 +41,21 @@
       <mat-form-field appearance="outline" class="news-modal__field">
         <mat-label>MainImageUrl</mat-label>
         <input formControlName="smallImageDetails" matInput />
+        @if (formUtils.isValidField(imagesGroup, 'smallImageDetails')) {
+          <mat-error>{{
+            formUtils.getFielError(imagesGroup, 'smallImageDetails')
+          }}</mat-error>
+        }
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="news-modal__field">
         <mat-label>Thumbnail Proxied</mat-label>
         <input formControlName="smallImageDetailsProxied" matInput />
+        @if (formUtils.isValidField(imagesGroup, 'smallImageDetailsProxied')) {
+          <mat-error>{{
+            formUtils.getFielError(imagesGroup, 'smallImageDetailsProxied')
+          }}</mat-error>
+        }
       </mat-form-field>
     </div>
 
@@ -99,11 +109,41 @@
             <mat-form-field appearance="outline" class="news-modal__field">
               <mat-label>MainImageUrl</mat-label>
               <input formControlName="smallImageDetails" matInput />
+              @if (
+                formUtils.isValidFieldNameArray(
+                  subNews,
+                  i,
+                  'images.smallImageDetails'
+                )
+              ) {
+                <mat-error>{{
+                  formUtils.getFielErrorInArray(
+                    subNews,
+                    i,
+                    'images.smallImageDetails'
+                  )
+                }}</mat-error>
+              }
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="news-modal__field">
               <mat-label>Thumbnail Proxied</mat-label>
               <input formControlName="smallImageDetailsProxied" matInput />
+              @if (
+                formUtils.isValidFieldNameArray(
+                  subNews,
+                  i,
+                  'images.smallImageDetailsProxied'
+                )
+              ) {
+                <mat-error>{{
+                  formUtils.getFielErrorInArray(
+                    subNews,
+                    i,
+                    'images.smallImageDetailsProxied'
+                  )
+                }}</mat-error>
+              }
             </mat-form-field>
           </div>
           <div class="subItem">

@@ -66,14 +66,7 @@ export class FormUtils {
     const handlers: Record<string, (err: any) => string> = {
       required: () => 'Este campo es requerido',
       minlength: (e) => `Mínimo de ${e.requiredLength} caracteres`,
-      // min: (e) => `Mínimo de ${e.min} caracteres`,
-      // noStrider: () => 'Nombre no permitido',
-      // email: () => 'mensaje de error del email',
-      // emailTaken: () => 'Email no se encuentra disponible',
-      // pattern: (e) =>
-      //   e.requiredPattern === FormUtils.emailPattern
-      //     ? 'El correo electronico no es permitido'
-      //     : 'Error de patro contra ER',
+      invalidUrlFormat: (e) => `Formato de url invalido`,
     };
 
     const key = Object.keys(errors).find((k) => k in handlers);

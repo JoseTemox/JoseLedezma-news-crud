@@ -27,6 +27,7 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatDividerModule } from '@angular/material/divider';
 import { FormUtils } from '../../../utils/form-utils';
 import { DatePipe } from '@angular/common';
+import { urlFormatValidator } from '../../../utils/url-format-checker';
 
 @Component({
   selector: 'app-modal-news-item',
@@ -83,8 +84,14 @@ export class ModalNewsItemAddComponent {
         },
       ],
       images: this.fb.nonNullable.group({
-        smallImageDetails: data?.images?.smallImageDetails,
-        smallImageDetailsProxied: data?.images?.smallImageDetailsProxied,
+        smallImageDetails: [
+          data?.images?.smallImageDetails,
+          [urlFormatValidator()],
+        ],
+        smallImageDetailsProxied: [
+          data?.images?.smallImageDetailsProxied,
+          [urlFormatValidator()],
+        ],
       }),
       subNews: this.fb.array(
         (data?.subNews ?? []).map((item) =>
@@ -118,7 +125,7 @@ export class ModalNewsItemAddComponent {
       ),
       newsLink: [
         data?.newsLink ?? '',
-        [Validators.required, Validators.minLength(5)],
+        [Validators.required, urlFormatValidator()],
       ],
       source: [data?.source, [Validators.required, Validators.minLength(2)]],
       hasSubNews: data?.hasSubNews ?? false,
@@ -132,6 +139,9 @@ export class ModalNewsItemAddComponent {
   }
   get subNews(): FormArray {
     return this.form.get('subNews') as FormArray;
+  }
+  get imagesGroup(): FormGroup {
+    return this.form.get('images') as FormGroup;
   }
 
   save(): void {
@@ -162,12 +172,18 @@ export class ModalNewsItemAddComponent {
       ],
       timestamp: item?.timestamp ?? '',
       images: this.fb.nonNullable.group({
-        smallImageDetails: item?.images?.smallImageDetails ?? '',
-        smallImageDetailsProxied: item?.images?.smallImageDetailsProxied ?? '',
+        smallImageDetails: [
+          item?.images?.smallImageDetails ?? '',
+          urlFormatValidator(),
+        ],
+        smallImageDetailsProxied: [
+          item?.images?.smallImageDetailsProxied ?? '',
+          urlFormatValidator(),
+        ],
       }),
       newsLink: [
         item?.newsLink ?? '',
-        [Validators.required, Validators.minLength(5)],
+        [Validators.required, urlFormatValidator()],
       ],
       source: [
         item?.source ?? '',
@@ -187,6 +203,5 @@ export class ModalNewsItemAddComponent {
     if (!isExisting) {
       this.subNews.controls = [];
     }
-    console.log(isExisting);
   }
 }

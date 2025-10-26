@@ -59,7 +59,6 @@ export class ImgRender {
   });
 
   onLoaded(): void {
-    console.log('onLoaded');
     this.loading.set(false);
     this.loaded.set(true);
     this.failed.set(false);

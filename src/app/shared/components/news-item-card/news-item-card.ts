@@ -27,7 +27,6 @@ export class NewsItemCard {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.data = this.newsItem();
-    console.log(dialogConfig.data);
     const { ModalCardDetailsComponent } = await import(
       '../modal-card-details/modal-card-details.component'
     );
