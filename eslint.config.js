@@ -45,10 +45,11 @@ module.exports = tseslint.config(
       ],
       // Angular best practices
       '@angular-eslint/no-empty-lifecycle-method': 'warn',
-      '@angular-eslint/prefer-on-push-component-change-detection': 'warn',
+      '@angular-eslint/prefer-on-push-component-change-detection': 'off',
       '@angular-eslint/prefer-output-readonly': 'warn',
       '@angular-eslint/prefer-signals': 'warn',
       '@angular-eslint/prefer-standalone': 'warn',
+      '@angular-eslint/template/prefer-ngsrc': 'off',
 
       // TypeScript best practices
       '@typescript-eslint/array-type': ['warn'],
@@ -152,7 +153,7 @@ module.exports = tseslint.config(
       ],
       '@angular-eslint/template/eqeqeq': 'error',
       '@angular-eslint/template/prefer-control-flow': 'error',
-      '@angular-eslint/template/prefer-ngsrc': 'warn',
+      '@angular-eslint/template/prefer-ngsrc': 'off',
       '@angular-eslint/template/prefer-self-closing-tags': 'warn',
       '@angular-eslint/template/use-track-by-function': 'warn',
     },

@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   AbstractControl,
   FormArray,
-  FormControl,
   FormGroup,
   ValidationErrors,
 } from '@angular/forms';
@@ -66,7 +66,7 @@ export class FormUtils {
     const handlers: Record<string, (err: any) => string> = {
       required: () => 'Este campo es requerido',
       minlength: (e) => `Mínimo de ${e.requiredLength} caracteres`,
-      invalidUrlFormat: (e) => `Formato de url invalido`,
+      invalidUrlFormat: () => `Formato de url invalido`,
     };
 
     const key = Object.keys(errors).find((k) => k in handlers);

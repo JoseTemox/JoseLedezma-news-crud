@@ -159,7 +159,6 @@ export class ModalNewsItemAddComponent {
       this.form.markAllAsTouched();
     }
   }
-  cancel(): void {}
   addSubnews(item?: NewsItemMain): void {
     const fg = this.fb.nonNullable.group({
       mainTitle: [

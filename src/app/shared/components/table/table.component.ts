@@ -20,7 +20,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { CellType, ColumnHeader } from './table.interfaces';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { NoImagePipe } from '../../pipes/no-image-pipe';
 import { ImgRender } from '../img-render/img-render.component';
 
 @Component({

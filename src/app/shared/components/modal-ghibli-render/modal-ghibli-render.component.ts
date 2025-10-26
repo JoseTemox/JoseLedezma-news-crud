@@ -10,10 +10,7 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { NewsItemCard } from '../news-item-card/news-item-card';
-import { NewsItemMain } from '../../../interfaces/news.interfaces';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
-import { IAGeneratorImageService } from '../../../services/ia-generator-api.service';
 import { NewsFacade } from '../../../services/news-facade.service';
 import { ImgRender } from '../img-render/img-render.component';
 import { rxResource } from '@angular/core/rxjs-interop';

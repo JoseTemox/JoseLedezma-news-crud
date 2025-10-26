@@ -1,6 +1,5 @@
 import { Component, effect, input, signal } from '@angular/core';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
-import { NewsItemMainTable } from '../../../interfaces/news.interfaces';
 
 @Component({
   selector: 'app-img-render',

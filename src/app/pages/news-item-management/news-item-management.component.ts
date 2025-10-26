@@ -50,7 +50,7 @@ export default class NewsItemManagementComponent {
       dialogConfig: MatDialogConfig
     ) => void;
   } = {
-    edit: (event: ActionEmitter, dialogConfig: MatDialogConfig) => {
+    edit: (event: ActionEmitter) => {
       this.addNew(event.row());
     },
     delete: (event: ActionEmitter) => {
