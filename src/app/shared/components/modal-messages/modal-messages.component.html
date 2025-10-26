@@ -1,0 +1,18 @@
+<h2 class="confirm-dialog__title" mat-dialog-title>
+  <mat-icon aria-hidden="true" class="confirm-dialog__icon">warning</mat-icon>
+  <span>{{ title }}</span>
+</h2>
+
+<mat-dialog-content class="confirm-dialog__content">
+  <p>{{ message }}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="confirm-dialog__actions">
+  <button mat-stroked-button type="button" (click)="cancel()">
+    {{ cancelLabel }}
+  </button>
+
+  <button color="primary" mat-flat-button type="button" (click)="confirm()">
+    {{ confirmLabel }}
+  </button>
+</mat-dialog-actions>

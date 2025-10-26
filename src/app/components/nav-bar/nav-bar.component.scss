@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #00bcd4; // Cyan
+  background-color: var(--mat-sys-primary); // Cyan
   color: #fff;
   padding: 0.5rem 1rem;
 
@@ -75,5 +75,8 @@
       color: #000;
       border-radius: 4px;
     }
+  }
+  &__activeRoute {
+    background-color: var(--mat-sys-tertiary);
   }
 }

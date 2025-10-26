@@ -18,6 +18,7 @@ import { ModalCardDetailsComponent } from '../../shared/components/modal-card-de
 import { MatIconModule } from '@angular/material/icon';
 import { ModalNewsItemAddComponent } from '../../shared/components/modal-news-item/modal-news-item-add.component';
 import { MatButton } from '@angular/material/button';
+import { ModalMessagesComponent } from '../../shared/components/modal-messages/modal-messages.component';
 
 @Component({
   selector: 'app-news-item-management',
@@ -63,7 +64,30 @@ export default class NewsItemManagementComponent {
       this.addNew(event.row());
     },
     delete: (event: ActionEmitter) => {
-      console.log('delete');
+      const numberToRemove = event.row().number;
+      const dialogRef = this.dialog.open(ModalMessagesComponent, {
+        data: {
+          title: 'Confirm deletion',
+          message: 'Are you sure you want to delete this record?',
+          confirmLabel: 'Yes, delete',
+          cancelLabel: 'Cancel',
+        },
+      });
+
+      dialogRef.afterClosed().subscribe((confirmed: boolean | undefined) => {
+        if (confirmed) {
+          this.dataSource.update((list) => {
+            const idx = list.findIndex((i) => i.number === numberToRemove);
+            if (idx === -1) {
+              return list;
+            }
+            const copy = list.slice();
+            copy.splice(idx, 1);
+            return copy;
+          });
+          // ejecutar eliminación
+        }
+      });
     },
     find_in_page: (event: ActionEmitter, dialogConfig: MatDialogConfig) => {
       dialogConfig.disableClose = false;
