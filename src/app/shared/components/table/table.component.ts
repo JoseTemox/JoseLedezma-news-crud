@@ -36,7 +36,6 @@ import { ImgRender } from '../img-render/img-render.component';
     ActionsComponent,
     MatPaginatorModule,
     MatTooltipModule,
-    NoImagePipe,
     ImgRender,
   ],
   templateUrl: './table.component.html',
