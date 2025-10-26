@@ -17,18 +17,6 @@
     "prettier:check": "prettier --check .",
     "prettier:write": "prettier --write ."
   },
-  "prettier": {
-    "printWidth": 100,
-    "singleQuote": true,
-    "overrides": [
-      {
-        "files": "*.html",
-        "options": {
-          "parser": "angular"
-        }
-      }
-    ]
-  },
   "private": true,
   "dependencies": {
     "@angular/cdk": "^20.2.10",

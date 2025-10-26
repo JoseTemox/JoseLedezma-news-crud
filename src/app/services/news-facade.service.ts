@@ -6,7 +6,10 @@ import { NewsItemMain, NewsItemMainTable } from '../interfaces/news.interfaces';
 import { Action } from '../shared/components/table/table.interfaces';
 import { LocalStorageService } from './local-storage.service';
 import { IAGeneratorImageService } from './ia-generator-api.service';
-import { GeneratorRequest, ResultElementImage } from '../interfaces/iaGenerator.interface';
+import {
+  GeneratorRequest,
+  ResultElementImage,
+} from '../interfaces/iaGenerator.interface';
 import { IaGeneratorMapper } from '../mappers/iagenerator-mapper';
 
 @Injectable({
@@ -24,7 +27,9 @@ export class NewsFacade {
     this.apiService
       .list()
       .pipe(
-        map((response) => AllNewsMapper.mapNewsItemToNewsItemMainArray(response.items)),
+        map((response) =>
+          AllNewsMapper.mapNewsItemToNewsItemMainArray(response.items)
+        ),
         map((items) => {
           if (!Array.isArray(items) || items.length === 0) {
             return [];
@@ -37,7 +42,7 @@ export class NewsFacade {
               actions: this.actions,
             };
           }) as NewsItemMain[];
-        }),
+        })
       )
       .subscribe((resp) => {
         this.allData.set(resp);
@@ -73,6 +78,10 @@ export class NewsFacade {
     };
     return this.iaGeneratorService
       .create(data)
-      .pipe(map((item) => IaGeneratorMapper.mapIaGeneratorResponseToResultElement(item)));
+      .pipe(
+        map((item) =>
+          IaGeneratorMapper.mapIaGeneratorResponseToResultElement(item)
+        )
+      );
   }
 }

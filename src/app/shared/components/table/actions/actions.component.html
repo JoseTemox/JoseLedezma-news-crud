@@ -27,12 +27,20 @@
         [matTooltip]="item.tooltip"
         (click)="emitAction(item.name); (item?.disabled === true)"
       >
-        <mat-icon class="asd" [ngClass]="{ 'disabled-general-color': item?.disabled }">
+        <mat-icon
+          class="asd"
+          [ngClass]="{ 'disabled-general-color': item?.disabled }"
+        >
           {{ item.name }}
         </mat-icon>
       </button>
     }
-    <button class="cursor" mat-icon-button type="button" [matMenuTriggerFor]="menu">
+    <button
+      class="cursor"
+      mat-icon-button
+      type="button"
+      [matMenuTriggerFor]="menu"
+    >
       <mat-icon>more_horiz</mat-icon>
     </button>
     <mat-menu #menu="matMenu">

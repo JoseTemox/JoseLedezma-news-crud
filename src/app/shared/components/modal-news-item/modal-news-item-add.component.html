@@ -42,7 +42,9 @@
         <mat-label>MainImageUrl</mat-label>
         <input formControlName="smallImageDetails" matInput />
         @if (formUtils.isValidField(imagesGroup, 'smallImageDetails')) {
-          <mat-error>{{ formUtils.getFielError(imagesGroup, 'smallImageDetails') }}</mat-error>
+          <mat-error>{{
+            formUtils.getFielError(imagesGroup, 'smallImageDetails')
+          }}</mat-error>
         }
       </mat-form-field>
 
@@ -57,7 +59,9 @@
       </mat-form-field>
     </div>
 
-    <mat-slide-toggle formControlName="hasSubNews" (change)="changeValidator($event.checked)"
+    <mat-slide-toggle
+      formControlName="hasSubNews"
+      (change)="changeValidator($event.checked)"
       >Has subnews</mat-slide-toggle
     >
 
@@ -68,14 +72,18 @@
             <mat-label>Sub Title</mat-label>
             <input formControlName="mainTitle" matInput />
             @if (formUtils.isValidFieldNameArray(subNews, i, 'mainTitle')) {
-              <mat-error>{{ formUtils.getFielErrorInArray(subNews, i, 'mainTitle') }}</mat-error>
+              <mat-error>{{
+                formUtils.getFielErrorInArray(subNews, i, 'mainTitle')
+              }}</mat-error>
             }
           </mat-form-field>
           <mat-form-field appearance="outline" class="news-modal__field">
             <mat-label>Sub Summary</mat-label>
             <textarea formControlName="summary" matInput rows="3"></textarea>
             @if (formUtils.isValidFieldNameArray(subNews, i, 'summary')) {
-              <mat-error>{{ formUtils.getFielErrorInArray(subNews, i, 'summary') }}</mat-error>
+              <mat-error>{{
+                formUtils.getFielErrorInArray(subNews, i, 'summary')
+              }}</mat-error>
             }
           </mat-form-field>
 
@@ -83,23 +91,37 @@
             <mat-label>Sub News URL</mat-label>
             <input formControlName="newsLink" matInput />
             @if (formUtils.isValidFieldNameArray(subNews, i, 'newsLink')) {
-              <mat-error>{{ formUtils.getFielErrorInArray(subNews, i, 'newsLink') }}</mat-error>
+              <mat-error>{{
+                formUtils.getFielErrorInArray(subNews, i, 'newsLink')
+              }}</mat-error>
             }
           </mat-form-field>
           <mat-form-field appearance="outline" class="news-modal__field">
             <mat-label>Source</mat-label>
             <input formControlName="source" matInput />
             @if (formUtils.isValidFieldNameArray(subNews, i, 'source')) {
-              <mat-error>{{ formUtils.getFielErrorInArray(subNews, i, 'source') }}</mat-error>
+              <mat-error>{{
+                formUtils.getFielErrorInArray(subNews, i, 'source')
+              }}</mat-error>
             }
           </mat-form-field>
           <div class="news-modal__images" formGroupName="images">
             <mat-form-field appearance="outline" class="news-modal__field">
               <mat-label>MainImageUrl</mat-label>
               <input formControlName="smallImageDetails" matInput />
-              @if (formUtils.isValidFieldNameArray(subNews, i, 'images.smallImageDetails')) {
+              @if (
+                formUtils.isValidFieldNameArray(
+                  subNews,
+                  i,
+                  'images.smallImageDetails'
+                )
+              ) {
                 <mat-error>{{
-                  formUtils.getFielErrorInArray(subNews, i, 'images.smallImageDetails')
+                  formUtils.getFielErrorInArray(
+                    subNews,
+                    i,
+                    'images.smallImageDetails'
+                  )
                 }}</mat-error>
               }
             </mat-form-field>
@@ -107,9 +129,19 @@
             <mat-form-field appearance="outline" class="news-modal__field">
               <mat-label>Thumbnail Proxied</mat-label>
               <input formControlName="smallImageDetailsProxied" matInput />
-              @if (formUtils.isValidFieldNameArray(subNews, i, 'images.smallImageDetailsProxied')) {
+              @if (
+                formUtils.isValidFieldNameArray(
+                  subNews,
+                  i,
+                  'images.smallImageDetailsProxied'
+                )
+              ) {
                 <mat-error>{{
-                  formUtils.getFielErrorInArray(subNews, i, 'images.smallImageDetailsProxied')
+                  formUtils.getFielErrorInArray(
+                    subNews,
+                    i,
+                    'images.smallImageDetailsProxied'
+                  )
                 }}</mat-error>
               }
             </mat-form-field>
@@ -123,15 +155,21 @@
         </div>
       }
       @if (hasSubNews) {
-        <button mat-button type="button" (click)="addSubnews()">Add subnews</button>
+        <button mat-button type="button" (click)="addSubnews()">
+          Add subnews
+        </button>
       }
     </div>
 
     <div class="news-modal__actions">
-      <button color="primary" mat-flat-button type="button" (click)="save()">Guardar</button>
+      <button color="primary" mat-flat-button type="button" (click)="save()">
+        Guardar
+      </button>
     </div>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-dialog-close matButton type="button"><mat-icon>cancel</mat-icon>Cancelar</button>
+  <button mat-dialog-close matButton type="button">
+    <mat-icon>cancel</mat-icon>Cancelar
+  </button>
 </mat-dialog-actions>

@@ -5,7 +5,11 @@
 
   @if (iaGeneratorResource.error()) {
     <h3 class="modal__title--danger">An error has occurred...</h3>
-    <app-img-render [height]="'70%'" [newsItemUrl]="'./no-image.jpg'" [width]="'100%'" />
+    <app-img-render
+      [height]="'70%'"
+      [newsItemUrl]="'./no-image.jpg'"
+      [width]="'100%'"
+    />
   }
 
   <div class="modal__center">
@@ -25,5 +29,7 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close type="button"><mat-icon>cancel</mat-icon>Cancelar</button>
+  <button mat-button mat-dialog-close type="button">
+    <mat-icon>cancel</mat-icon>Cancelar
+  </button>
 </mat-dialog-actions>

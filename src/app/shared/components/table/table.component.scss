@@ -197,7 +197,9 @@ thead {
   white-space: nowrap;
 }
 
-@each $breakpoint, $width in (xs: 10ch, sm: 20ch, md: 30ch, lg: 40ch, xl: 50ch, xxl: 60ch) {
+@each $breakpoint,
+  $width in (xs: 10ch, sm: 20ch, md: 30ch, lg: 40ch, xl: 50ch, xxl: 60ch)
+{
   .truncate-#{$breakpoint} {
     max-width: $width;
   }

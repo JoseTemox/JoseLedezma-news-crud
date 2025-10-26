@@ -7,14 +7,18 @@ export class AllNewsMapper {
       timestamp: item.timestamp,
       mainTitle: item.title,
       summary: item.snippet,
-      images: item.images ? ImagesMapper.mapImagesToImagesDetails(item.images) : null,
+      images: item.images
+        ? ImagesMapper.mapImagesToImagesDetails(item.images)
+        : null,
       hasSubNews: item.hasSubnews,
       newsLink: item.newsUrl,
       source: item.publisher,
       subNews: AllNewsMapper.mapNewsItemToNewsItemMainArray(item.subnews),
     };
   }
-  static mapNewsItemToNewsItemMainArray(items: NewsItem[] | undefined): NewsItemMain[] | null {
+  static mapNewsItemToNewsItemMainArray(
+    items: NewsItem[] | undefined
+  ): NewsItemMain[] | null {
     return items ? items.map(this.mapNewsItemToNewsItemMain) : null;
   }
 }

@@ -6,7 +6,11 @@ import {
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http';
 import { requestInterceptor } from './shared/request.interceptor';
 
 export const appConfig: ApplicationConfig = {

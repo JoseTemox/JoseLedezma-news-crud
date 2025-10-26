@@ -1,5 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
-import { NewsItemMain, NewsItemMainTable } from '../../interfaces/news.interfaces';
+import {
+  NewsItemMain,
+  NewsItemMainTable,
+} from '../../interfaces/news.interfaces';
 import {
   ActionEmitter,
   CellType,
@@ -42,7 +45,10 @@ export default class NewsItemManagementComponent {
   readonly isLoading = signal(false);
 
   actionHandler: {
-    [key: string]: (event: ActionEmitter, dialogConfig: MatDialogConfig) => void;
+    [key: string]: (
+      event: ActionEmitter,
+      dialogConfig: MatDialogConfig
+    ) => void;
   } = {
     edit: (event: ActionEmitter, dialogConfig: MatDialogConfig) => {
       this.addNew(event.row());
@@ -100,15 +106,17 @@ export default class NewsItemManagementComponent {
           [dataResponseWithActions, ...list].map((item, index) => ({
             ...item,
             number: index + 1,
-          })),
+          }))
         );
         this.facadeNewsService.setData(this.dataSource()[0]);
       }
       if (modalResponse && modalResponse.number !== null) {
         this.dataSource.update((list) =>
           list.map((item) =>
-            item.number === modalResponse.number ? dataResponseWithActions : item,
-          ),
+            item.number === modalResponse.number
+              ? dataResponseWithActions
+              : item
+          )
         );
         this.facadeNewsService.updateData(dataResponseWithActions);
       }

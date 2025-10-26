@@ -6,7 +6,10 @@ import { inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalMessagesComponent } from './components/modal-messages/modal-messages.component';
 
-export function requestInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn) {
+export function requestInterceptor(
+  req: HttpRequest<unknown>,
+  next: HttpHandlerFn
+) {
   const dialog = inject(MatDialog);
   const selectedHost = req.url.includes('image-generator')
     ? environment.x_rapidapi_image_generato_host
@@ -31,6 +34,6 @@ export function requestInterceptor(req: HttpRequest<unknown>, next: HttpHandlerF
       });
 
       return throwError(() => error.message ?? error);
-    }),
+    })
   );
 }

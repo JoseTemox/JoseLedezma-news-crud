@@ -20,7 +20,11 @@ export class FormUtils {
     return FormUtils.getTextErrors(errors);
   }
 
-  static isValidFieldNameArray(formArray: FormArray, index: number, item: string): boolean | null {
+  static isValidFieldNameArray(
+    formArray: FormArray,
+    index: number,
+    item: string
+  ): boolean | null {
     const currentControl = formArray.at(index) as FormGroup | null;
     if (!currentControl) {
       return null;
@@ -35,7 +39,11 @@ export class FormUtils {
     return !!child.errors && !!child.touched;
   }
 
-  static getFielErrorInArray(formArray: FormArray, index: number, item: string): string | null {
+  static getFielErrorInArray(
+    formArray: FormArray,
+    index: number,
+    item: string
+  ): string | null {
     const currentControl = formArray.at(index) as FormGroup | null;
     if (!currentControl) {
       return null;

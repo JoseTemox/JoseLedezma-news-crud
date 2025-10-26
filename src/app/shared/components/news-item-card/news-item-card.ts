@@ -42,6 +42,9 @@ export class NewsItemCard {
       '../modal-ghibli-render/modal-ghibli-render.component'
     );
 
-    const dialogRef = this.dialog.open(ModalGhibliRenderComponent, dialogConfig);
+    const dialogRef = this.dialog.open(
+      ModalGhibliRenderComponent,
+      dialogConfig
+    );
   }
 }

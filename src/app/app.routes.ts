@@ -9,7 +9,8 @@ export const routes: Routes = [
   {
     path: 'management',
     title: 'Management News',
-    loadComponent: () => import('./pages/news-item-management/news-item-management.component'),
+    loadComponent: () =>
+      import('./pages/news-item-management/news-item-management.component'),
   },
 
   {
