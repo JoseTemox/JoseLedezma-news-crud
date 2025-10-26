@@ -27,9 +27,7 @@ export class LocalStorageService {
   }
   updateData(data: NewsItemMainTable): void {
     const currentData = this.getAllUserData();
-    const dataUpdated = currentData.map((item) =>
-      item.number === data.number ? data : item
-    );
+    const dataUpdated = currentData.map((item) => (item.number === data.number ? data : item));
     this.saveFixedData(dataUpdated);
   }
 

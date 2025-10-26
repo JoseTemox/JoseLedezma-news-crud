@@ -43,7 +43,6 @@ export class ModalGhibliRenderComponent {
 
   iaGeneratorResource = rxResource({
     params: () => this.modalData.newsTitle,
-    stream: (title) =>
-      this.newsFacadeService.iaTitleNewsGenerator(title.params),
+    stream: (title) => this.newsFacadeService.iaTitleNewsGenerator(title.params),
   });
 }

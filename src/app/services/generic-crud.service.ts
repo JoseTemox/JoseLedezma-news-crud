@@ -6,11 +6,7 @@ import { environment } from '../../environments/environment';
 // @Injectable({
 //   providedIn: 'root',
 // })
-export class GenericCrudService<
-  T,
-  CreateDto = Partial<T>,
-  UpdateDto = Partial<T>,
-> {
+export class GenericCrudService<T, CreateDto = Partial<T>, UpdateDto = Partial<T>> {
   protected http = inject(HttpClient);
 
   constructor(protected baseUrl: string) {}
@@ -18,9 +14,7 @@ export class GenericCrudService<
   list(params?: Record<string, string | number>): Observable<T> {
     const httpParams = params
       ? new HttpParams({
-          fromObject: Object.fromEntries(
-            Object.entries(params).map(([k, v]) => [k, String(v)])
-          ),
+          fromObject: Object.fromEntries(Object.entries(params).map(([k, v]) => [k, String(v)])),
         })
       : undefined;
     return this.http.get<T>(this.baseUrl, { params: httpParams });

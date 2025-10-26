@@ -1,12 +1,7 @@
-import {
-  IAGeneratorResponse,
-  ResultElementImage,
-} from '../interfaces/iaGenerator.interface';
+import { IAGeneratorResponse, ResultElementImage } from '../interfaces/iaGenerator.interface';
 
 export class IaGeneratorMapper {
-  static mapIaGeneratorResponseToResultElement(
-    item: IAGeneratorResponse
-  ): ResultElementImage {
+  static mapIaGeneratorResponseToResultElement(item: IAGeneratorResponse): ResultElementImage {
     const found = item.result.data.results[0];
     return {
       indexImage: found.index,

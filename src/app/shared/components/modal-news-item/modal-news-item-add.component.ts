@@ -10,17 +10,8 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import {
-  NewsItemMain,
-  NewsItemMainTable,
-} from '../../../interfaces/news.interfaces';
-import {
-  FormArray,
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { NewsItemMain, NewsItemMainTable } from '../../../interfaces/news.interfaces';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
@@ -63,35 +54,19 @@ export class ModalNewsItemAddComponent {
   // eslint-disable-next-line complexity
   private buildForm(data?: NewsItemMainTable): FormGroup {
     return this.fb.group({
-      mainTitle: [
-        data?.mainTitle ?? '',
-        [Validators.required, Validators.minLength(5)],
-      ],
-      summary: [
-        data?.summary ?? '',
-        [Validators.required, Validators.minLength(5)],
-      ],
+      mainTitle: [data?.mainTitle ?? '', [Validators.required, Validators.minLength(5)]],
+      summary: [data?.summary ?? '', [Validators.required, Validators.minLength(5)]],
       timestamp: [
         {
           value: data?.timestamp
             ? this.datePipe.transform(data?.timestamp, 'yyyy-MM-dd', 'UTC')
-            : this.datePipe.transform(
-                new Date().getTime(),
-                'yyyy-MM-dd',
-                'UTC'
-              ),
+            : this.datePipe.transform(new Date().getTime(), 'yyyy-MM-dd', 'UTC'),
           disabled: true,
         },
       ],
       images: this.fb.nonNullable.group({
-        smallImageDetails: [
-          data?.images?.smallImageDetails,
-          [urlFormatValidator()],
-        ],
-        smallImageDetailsProxied: [
-          data?.images?.smallImageDetailsProxied,
-          [urlFormatValidator()],
-        ],
+        smallImageDetails: [data?.images?.smallImageDetails, [urlFormatValidator()]],
+        smallImageDetailsProxied: [data?.images?.smallImageDetailsProxied, [urlFormatValidator()]],
       }),
       subNews: this.fb.array(
         (data?.subNews ?? []).map((item) =>
@@ -99,16 +74,8 @@ export class ModalNewsItemAddComponent {
             timestamp: [
               {
                 value: data?.timestamp
-                  ? this.datePipe.transform(
-                      item?.timestamp,
-                      'yyyy-MM-dd',
-                      'UTC'
-                    )
-                  : this.datePipe.transform(
-                      new Date().getTime(),
-                      'yyyy-MM-dd',
-                      'UTC'
-                    ),
+                  ? this.datePipe.transform(item?.timestamp, 'yyyy-MM-dd', 'UTC')
+                  : this.datePipe.transform(new Date().getTime(), 'yyyy-MM-dd', 'UTC'),
                 disabled: true,
               },
             ],
@@ -120,13 +87,10 @@ export class ModalNewsItemAddComponent {
             }),
             newsLink: item?.newsLink ?? '',
             source: item?.source,
-          })
-        )
+          }),
+        ),
       ),
-      newsLink: [
-        data?.newsLink ?? '',
-        [Validators.required, urlFormatValidator()],
-      ],
+      newsLink: [data?.newsLink ?? '', [Validators.required, urlFormatValidator()]],
       source: [data?.source, [Validators.required, Validators.minLength(2)]],
       hasSubNews: data?.hasSubNews ?? false,
       number: data?.number,
@@ -162,33 +126,18 @@ export class ModalNewsItemAddComponent {
   cancel(): void {}
   addSubnews(item?: NewsItemMain): void {
     const fg = this.fb.nonNullable.group({
-      mainTitle: [
-        item?.mainTitle ?? '',
-        [Validators.required, Validators.minLength(5)],
-      ],
-      summary: [
-        item?.summary ?? '',
-        [Validators.required, Validators.minLength(5)],
-      ],
+      mainTitle: [item?.mainTitle ?? '', [Validators.required, Validators.minLength(5)]],
+      summary: [item?.summary ?? '', [Validators.required, Validators.minLength(5)]],
       timestamp: item?.timestamp ?? '',
       images: this.fb.nonNullable.group({
-        smallImageDetails: [
-          item?.images?.smallImageDetails ?? '',
-          urlFormatValidator(),
-        ],
+        smallImageDetails: [item?.images?.smallImageDetails ?? '', urlFormatValidator()],
         smallImageDetailsProxied: [
           item?.images?.smallImageDetailsProxied ?? '',
           urlFormatValidator(),
         ],
       }),
-      newsLink: [
-        item?.newsLink ?? '',
-        [Validators.required, urlFormatValidator()],
-      ],
-      source: [
-        item?.source ?? '',
-        [Validators.required, Validators.minLength(3)],
-      ],
+      newsLink: [item?.newsLink ?? '', [Validators.required, urlFormatValidator()]],
+      source: [item?.source ?? '', [Validators.required, Validators.minLength(3)]],
     });
     this.subNews.push(fg);
     this.form.patchValue({ hasSubNews: true });
