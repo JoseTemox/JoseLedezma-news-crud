@@ -19,6 +19,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { ModalNewsItemAddComponent } from '../../shared/components/modal-news-item/modal-news-item-add.component';
 import { MatButton } from '@angular/material/button';
 import { ModalMessagesComponent } from '../../shared/components/modal-messages/modal-messages.component';
+import { LocalStorageService } from '../../services/local-storage.service';
+import { NewsFacade } from '../../services/news-facade.service';
 
 @Component({
   selector: 'app-news-item-management',
@@ -27,18 +29,11 @@ import { ModalMessagesComponent } from '../../shared/components/modal-messages/m
   styleUrl: './news-item-management.component.scss',
 })
 export default class NewsItemManagementComponent {
-  allData = (
-    AllNewsMapper.mapNewsItemToNewsItemMainArray(alldata) as NewsItemMain[]
-  ).map((item, index) => {
-    return {
-      ...item,
-      urlImages: item.images?.smallImageDetailsProxied,
-      number: index + 1,
-      actions: this.actions,
-    };
-  });
+  storageService = inject(LocalStorageService);
+  facadeNewsService = inject(NewsFacade);
+
+  dataSource = this.facadeNewsService.allData;
   private readonly dialog = inject(MatDialog);
-  readonly newsItemList = signal<NewsItemMain[]>(this.allData);
   columnHeader: ColumnHeader = {
     number: { label: 'Number #' },
     mainTitle: { label: 'Title', showToggle: true },
@@ -51,7 +46,6 @@ export default class NewsItemManagementComponent {
       type: CellType.ACTIONS,
     },
   };
-  readonly dataSource = signal<NewsItemMainTable[]>(this.allData);
   readonly isLoading = signal(false);
 
   actionHandler: {
@@ -64,7 +58,7 @@ export default class NewsItemManagementComponent {
       this.addNew(event.row());
     },
     delete: (event: ActionEmitter) => {
-      const numberToRemove = event.row().number;
+      const data: NewsItemMainTable = event.row();
       const dialogRef = this.dialog.open(ModalMessagesComponent, {
         data: {
           title: 'Confirm deletion',
@@ -77,7 +71,7 @@ export default class NewsItemManagementComponent {
       dialogRef.afterClosed().subscribe((confirmed: boolean | undefined) => {
         if (confirmed) {
           this.dataSource.update((list) => {
-            const idx = list.findIndex((i) => i.number === numberToRemove);
+            const idx = list.findIndex((i) => i.number === data.number);
             if (idx === -1) {
               return list;
             }
@@ -85,24 +79,16 @@ export default class NewsItemManagementComponent {
             copy.splice(idx, 1);
             return copy;
           });
-          // ejecutar eliminación
+          this.facadeNewsService.deleteItem(data);
         }
       });
     },
     find_in_page: (event: ActionEmitter, dialogConfig: MatDialogConfig) => {
       dialogConfig.disableClose = false;
       dialogConfig.data = event.row() as NewsItemMain;
-      const dialogref = this.dialog.open(
-        ModalCardDetailsComponent,
-        dialogConfig
-      );
-      // dialogref.afterClosed().subscribe();
+      this.dialog.open(ModalCardDetailsComponent, dialogConfig);
     },
   };
-
-  get actions(): Action[] {
-    return [{ name: 'find_in_page' }, { name: 'edit' }, { name: 'delete' }];
-  }
 
   action(event: ActionEmitter): void {
     const dialogConfig = new MatDialogConfig();
@@ -115,22 +101,28 @@ export default class NewsItemManagementComponent {
     dialogConfig.data = data ?? null;
     const dialogRef = this.dialog.open(ModalNewsItemAddComponent, dialogConfig);
     dialogRef.afterClosed().subscribe((modalResponse: NewsItemMainTable) => {
-      console.log(modalResponse?.number);
+      const dataResponseWithActions = {
+        ...modalResponse,
+        actions: this.facadeNewsService.actions,
+      };
       if (modalResponse && modalResponse?.number === null) {
-        console.log('****');
         this.dataSource.update((list) =>
-          [{ ...modalResponse, actions: this.actions }, ...list].map(
-            (item, index) => ({ ...item, number: index + 1 })
-          )
+          [dataResponseWithActions, ...list].map((item, index) => ({
+            ...item,
+            number: index + 1,
+          }))
         );
+        this.facadeNewsService.setData(this.dataSource()[0]);
       }
       if (modalResponse && modalResponse.number !== null) {
-        console.log('update');
         this.dataSource.update((list) =>
           list.map((item) =>
-            item.number === modalResponse.number ? modalResponse : item
+            item.number === modalResponse.number
+              ? dataResponseWithActions
+              : item
           )
         );
+        this.facadeNewsService.updateData(dataResponseWithActions);
       }
     });
   }
