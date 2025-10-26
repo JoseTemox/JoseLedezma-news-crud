@@ -7,7 +7,7 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-export interface ConfirmDeleteData {
+export type ConfirmDeleteData = {
   title?: string;
   message?: string;
   confirmLabel?: string;

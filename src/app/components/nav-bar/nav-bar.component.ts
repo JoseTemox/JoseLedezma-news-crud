@@ -10,7 +10,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
   styleUrl: './nav-bar.component.scss',
 })
 export class NavBarComponent {
-  isMenuOpen = signal(false);
+  readonly isMenuOpen = signal(false);
 
   // isMenuOpen = false;
 
