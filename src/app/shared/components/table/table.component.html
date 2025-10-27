@@ -1,17 +1,16 @@
-<div class="component-container table-container">
+<div class="tableComponent tableComponent__tableWrapper">
   @if (isLoading()) {
     <mat-progress-bar mode="indeterminate" />
   }
-  <table mat-table [dataSource]="dataTable()">
+  <table class="tableComponent__table" mat-table [dataSource]="dataTable()">
     @for (column of displayedColumns; track column) {
       <ng-container matColumnDef="{{ column }}">
         @switch (columnHeader()[column].type) {
           @case (cellType.ACTIONS) {
             <th
               *matHeaderCellDef
-              class="truncate-responsive cursor"
+              class="tableComponent__cell tableComponent__cell--header tableComponent__cell--truncate"
               mat-header-cell
-              style="text-align: center"
               [matTooltip]="columnHeader()[column].label"
               [matTooltipPosition]="'above'"
             >
@@ -29,7 +28,7 @@
           @case (cellType.LINK) {
             <th
               *matHeaderCellDef
-              class="truncate-responsive cursor"
+              class="tableComponent__cell tableComponent__cell--header tableComponent__cell--truncate"
               mat-header-cell
               [matTooltip]="columnHeader()[column].label"
               [matTooltipPosition]="'above'"
@@ -38,13 +37,12 @@
             </th>
             <td
               *matCellDef="let element"
-              class="text-truncate truncate-sm"
+              class="tableComponent__cell tableComponent__cell--body tableComponent__cell--truncate"
               mat-cell
               [matTooltip]="element[column]"
               [matTooltipDisabled]="!columnHeader()[column].showToggle"
               [matTooltipPosition]="'above'"
             >
-              <!-- {{ element[column] }} -->
               <a target="_blank" [href]="element[column]">
                 {{ element[column] }}
               </a>
@@ -53,7 +51,7 @@
           @case (cellType.IMAGES) {
             <th
               *matHeaderCellDef
-              class="truncate-responsive cursor"
+              class="tableComponent__cell tableComponent__cell--header tableComponent__cell--truncate"
               mat-header-cell
               [matTooltip]="columnHeader()[column].label"
               [matTooltipPosition]="'above'"
@@ -62,7 +60,7 @@
             </th>
             <td
               *matCellDef="let element"
-              class="text-truncate truncate-sm"
+              class="tableComponent__cell tableComponent__cell--body tableComponent__cell--truncate"
               mat-cell
               [matTooltip]="element[column]"
               [matTooltipDisabled]="!columnHeader()[column].showToggle"
@@ -80,21 +78,18 @@
             </td>
           }
           @default {
-            <!-- Header Label Columns -->
             <th
               *matHeaderCellDef
-              class="truncate-responsive cursor"
+              class="tableComponent__cell tableComponent__cell--truncate"
               mat-header-cell
               [matTooltip]="columnHeader()[column].label"
               [matTooltipPosition]="'above'"
             >
               {{ columnHeader()[column].label }}
             </th>
-
-            <!-- Colum row contain -->
             <td
               *matCellDef="let element"
-              class="text-truncate truncate-sm"
+              class="tableComponent__cell tableComponent__cell--body tableComponent__cell--truncate"
               mat-cell
               [matTooltip]="element[column]"
               [matTooltipDisabled]="!columnHeader()[column].showToggle"
@@ -111,10 +106,14 @@
     <tr
       *matRowDef="let row; columns: displayedColumns"
       mat-row
-      [class.expanded]="row.expanded"
+      [class.tableComponent__row--expanded]="row.expanded"
     ></tr>
   </table>
   @if (showPaginator()) {
-    <mat-paginator showFirstLastButtons [pageSizeOptions]="[5, 10, 20]" />
+    <mat-paginator
+      class="tableComponent__paginator"
+      showFirstLastButtons
+      [pageSizeOptions]="[5, 10, 20]"
+    />
   }
 </div>
