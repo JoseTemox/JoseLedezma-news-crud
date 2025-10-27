@@ -64,7 +64,7 @@
     max-width: 100%;
     white-space: normal;
     overflow-wrap: anywhere;
-    overflow: hidden; // o overflow-x: auto si quieres scroll horizontal
+    overflow: hidden;
     hyphens: auto;
   }
   &__content {
@@ -78,7 +78,7 @@
     max-width: 100%;
     white-space: normal;
     overflow-wrap: anywhere;
-    overflow: hidden; // o overflow-x: auto si quieres scroll horizontal
+    overflow: hidden;
     hyphens: auto;
   }
 

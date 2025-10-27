@@ -1,6 +1,6 @@
 <h2 mat-dialog-title><b>News-Item Management</b></h2>
 <mat-dialog-content>
-  <form class="news-modal__form" [formGroup]="form">
+  <form class="news-modal" [formGroup]="form">
     <mat-form-field appearance="outline" class="news-modal__field">
       <mat-label>Title</mat-label>
       <input formControlName="mainTitle" matInput />
@@ -65,7 +65,7 @@
       >Has subnews</mat-slide-toggle
     >
 
-    <div class="news-modal__form" formArrayName="subNews">
+    <div class="news-modal" formArrayName="subNews">
       @for (newsItem of subNews.controls; track $index; let i = $index) {
         <div [formGroupName]="i">
           <mat-form-field appearance="outline" class="news-modal__field">
@@ -146,7 +146,7 @@
               }
             </mat-form-field>
           </div>
-          <div class="subItem">
+          <div class="news-modal__subItem">
             <button matFab type="button" (click)="removeSubNews(i)">
               <mat-icon>delete</mat-icon>
             </button>

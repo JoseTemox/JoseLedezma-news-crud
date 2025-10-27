@@ -2,7 +2,7 @@
   <div class="actions">
     @for (item of sortedElement(); track item) {
       <button
-        class="button-transparent cursor"
+        class="actions__button-transparent cursor"
         mat-icon-button
         type="button"
         [disabled]="item?.disabled || false"
@@ -27,10 +27,7 @@
         [matTooltip]="item.tooltip"
         (click)="emitAction(item.name); (item?.disabled === true)"
       >
-        <mat-icon
-          class="asd"
-          [ngClass]="{ 'disabled-general-color': item?.disabled }"
-        >
+        <mat-icon [ngClass]="{ 'disabled-general-color': item?.disabled }">
           {{ item.name }}
         </mat-icon>
       </button>

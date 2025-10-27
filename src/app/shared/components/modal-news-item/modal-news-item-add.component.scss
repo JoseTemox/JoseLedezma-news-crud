@@ -13,7 +13,7 @@
   --nm-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
-.news-modal__form {
+.news-modal {
   display: flex;
   flex-direction: column;
   gap: var(--nm-gap);
@@ -26,119 +26,49 @@
   box-shadow: var(--nm-shadow);
   margin-top: 10px;
 
-  .subItem {
+  &__subItem {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     row-gap: 12px;
   }
-}
 
-.news-modal__field {
-  width: 100%;
-  display: block;
-  margin-bottom: 10px;
-
-  ::ng-deep .mat-form-field {
+  &__field {
     width: 100%;
-  }
-}
+    display: block;
+    margin-bottom: 10px;
 
-.news-modal__images {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
+    ::ng-deep .mat-form-field {
+      width: 100%;
+    }
   }
 
-  .news-modal__field {
-    margin: 0;
+  &__images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  &__actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+
+    button {
+      min-height: var(--nm-field-height);
+      padding: 0 14px;
+    }
   }
 }
 
 .mat-slide-toggle[formControlName='hasSubNews'] {
   margin-top: 0.25rem;
   margin-bottom: 0.5rem;
-}
-
-.news-modal__subnews {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-top: 0.25rem;
-
-  &-item {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 0.5rem;
-    align-items: start;
-    padding: 0.5rem;
-    border: 1px solid var(--nm-border);
-    border-radius: 6px;
-    background: #fafafa;
-
-    @media (max-width: 600px) {
-      grid-template-columns: 1fr;
-      align-items: stretch;
-    }
-
-    button[mat-icon-button] {
-      height: var(--nm-field-height);
-      width: var(--nm-field-height);
-      min-width: 40px;
-      align-self: start;
-    }
-
-    .news-modal__field {
-      margin: 0;
-    }
-  }
-
-  > button[mat-button] {
-    align-self: start;
-    margin-top: 0.25rem;
-  }
-}
-
-.news-modal__actions {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: flex-end;
-  margin-top: 0.5rem;
-
-  button {
-    min-height: var(--nm-field-height);
-    padding: 0 14px;
-  }
-}
-
-.news-modal__field.ng-invalid.ng-touched,
-.news-modal__subnews-item.ng-invalid.ng-touched {
-  ::ng-deep .mat-form-field-outline {
-    border-color: #d32f2f !important;
-  }
-}
-
-:host ::ng-deep {
-  .mat-form-field-appearance-outline .mat-form-field-outline {
-    border-radius: 6px;
-  }
-
-  .mat-form-field-wrapper {
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-  }
-
-  .mat-slide-toggle {
-    margin: 6px 0;
-  }
-
-  .mat-pseudo-checkbox,
-  .mat-icon {
-    vertical-align: middle;
-  }
 }
 
 @media (max-width: 920px) {
