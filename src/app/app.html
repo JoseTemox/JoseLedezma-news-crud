@@ -1,5 +1,11 @@
 <app-nav-bar />
 <section class="page-container">
-  <router-outlet />
+  @if (facadeNewsService.loading()) {
+    <section class="page-container__spinner">
+      <mat-spinner [diameter]="200" />
+    </section>
+  } @else {
+    <router-outlet />
+  }
 </section>
 <app-footer />

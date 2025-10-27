@@ -14,8 +14,8 @@
 
   <div class="modal__center">
     @if (iaGeneratorResource.isLoading()) {
-      <h3 class="modal__spinner">Generating image from the news title</h3>
-      <mat-spinner class="modal__spinner" [diameter]="72" />
+      <h3>Generating image from the news title</h3>
+      <mat-spinner [diameter]="72" />
     }
 
     @if (iaGeneratorResource.hasValue()) {

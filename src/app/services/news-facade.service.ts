@@ -1,7 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { NewsApiService } from './news-api.service';
 import { AllNewsMapper } from '../mappers/all-news-mappers';
-import { map, Observable } from 'rxjs';
+import { finalize, map, Observable } from 'rxjs';
 import { NewsItemMain, NewsItemMainTable } from '../interfaces/news.interfaces';
 import { Action } from '../shared/components/table/table.interfaces';
 import { LocalStorageService } from './local-storage.service';
@@ -20,10 +20,11 @@ export class NewsFacade {
   private readonly localStorageService = inject(LocalStorageService);
   iaGeneratorService = inject(IAGeneratorImageService);
 
-  private readonly loading = signal(false);
+  readonly loading = signal(false);
   readonly allData = signal<NewsItemMainTable[]>([]);
 
   loadAll(): void {
+    this.loading.set(true);
     this.apiService
       .list()
       .pipe(
@@ -42,7 +43,8 @@ export class NewsFacade {
               actions: this.actions,
             };
           }) as NewsItemMain[];
-        })
+        }),
+        finalize(() => this.loading.set(false))
       )
       .subscribe((resp) => {
         this.allData.set(resp);
