@@ -15,6 +15,7 @@ export class ImgRender {
   readonly height = input<number | string | undefined>(96);
   readonly marginLeft = input<number | string | undefined>(0);
   readonly marginRight = input<number | string | undefined>(0);
+  readonly isIconType = input(false);
   readonly loading = signal(false);
   readonly loaded = signal(false);
   readonly failed = signal(false);

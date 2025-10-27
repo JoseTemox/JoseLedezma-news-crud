@@ -74,6 +74,10 @@
     transform: translateY(-6px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
   }
+
+  &__mat-mdc-card-header {
+    display: block !important;
+  }
 }
 
 :host ::ng-deep mat-card {
@@ -83,10 +87,45 @@
   border-radius: inherit;
 }
 
+@mixin line-clamp($lines) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.truncate {
+  // &__text {
+  //   line-height: 1.2;
+  // }
+
+  &__lines-2 {
+    @include line-clamp(2);
+  }
+  &__lines-3 {
+    @include line-clamp(3);
+  }
+}
+
 .truncate-2 {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.truncate-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;

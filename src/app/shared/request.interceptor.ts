@@ -14,7 +14,6 @@ export function requestInterceptor(
   const selectedHost = req.url.includes('image-generator')
     ? environment.x_rapidapi_image_generato_host
     : environment.x_rapidapi_google_host;
-  console.log(req.url);
   const newReq = req.clone({
     setHeaders: {
       'Content-Type': 'application/json',

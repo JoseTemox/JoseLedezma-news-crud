@@ -12,6 +12,7 @@
     [alt]="title()"
     [class.failed()]="failed()"
     [class.loading()]="loading()"
+    [class.media__image--rounded]="isIconType()"
     [src]="currentSrc()"
     (error)="onError()"
     (load)="onLoaded()"

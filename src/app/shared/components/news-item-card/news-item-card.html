@@ -1,5 +1,8 @@
 <mat-card appearance="outlined" class="card">
-  <mat-card-header style="padding: 0; justify-content: center">
+  <mat-card-header
+    class="card__mat-mdc-card-header"
+    style="padding: 0; justify-content: center"
+  >
     <app-img-render
       [height]="'100%'"
       [newsItemUrl]="newsItem().images?.smallImageDetailsProxied"
@@ -11,7 +14,7 @@
     <mat-card-title-group class="card__title-group">
       <mat-card-title
         class="card__title"
-        [class.truncate-2]="!isDetailsMode()"
+        [class.truncate__lines-2]="!isDetailsMode()"
         >{{ newsItem().mainTitle }}</mat-card-title
       >
       <mat-card-subtitle class="card__subtitle">
@@ -27,7 +30,11 @@
   </mat-card-header>
 
   <mat-card-content class="card__content">
-    {{ newsItem().summary }}
+    @if (!isDetailsMode()) {
+      {{ newsItem().summary | truncateText: 80 }}
+    } @else {
+      {{ newsItem().summary }}
+    }
   </mat-card-content>
   @if (newsItem().hasSubNews && isDetailsMode()) {
     <mat-card-content class="card__content">

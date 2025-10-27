@@ -6,10 +6,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ImgRender } from '../img-render/img-render.component';
+import { TruncateTextPipe } from '../../pipes/truncate-text-pipe';
 
 @Component({
   selector: 'app-news-item-card',
-  imports: [MatCardModule, DatePipe, MatButtonModule, MatListModule, ImgRender],
+  imports: [
+    MatCardModule,
+    DatePipe,
+    MatButtonModule,
+    MatListModule,
+    ImgRender,
+    TruncateTextPipe,
+  ],
   templateUrl: './news-item-card.html',
   styleUrls: ['./news-item-card.scss'],
   standalone: true,

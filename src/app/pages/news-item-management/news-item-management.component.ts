@@ -108,7 +108,7 @@ export default class NewsItemManagementComponent {
             number: index + 1,
           }))
         );
-        this.facadeNewsService.setData(this.dataSource()[0]);
+        this.facadeNewsService.saveFixedData(this.dataSource());
       }
       if (modalResponse && modalResponse.number !== null) {
         this.dataSource.update((list) =>
