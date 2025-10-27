@@ -31,7 +31,7 @@ A modern application built with Angular 20+, designed with best development prac
 - **🧪 Complete Testing** - Test suite with Jasmine and Karma
 - **📊 Code Coverage** - Integrated code coverage reports
 - **🎨 Prettier** - Consistent code formatting
-- **📘 Eslint** - Static typing for greater robustness
+- **📘 Eslint** - Code syntax and logical structure
 - **🚀 Optimized** - Optimized production builds
 
 ## 🛠️ Technologies Used
