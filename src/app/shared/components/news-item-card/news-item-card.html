@@ -1,9 +1,19 @@
 <mat-card appearance="outlined" class="card">
+  <mat-card-header style="padding: 0; justify-content: center">
+    <app-img-render
+      [height]="'100%'"
+      [newsItemUrl]="newsItem().images?.smallImageDetailsProxied"
+      [title]="newsItem().mainTitle"
+      [width]="'100%'"
+    />
+  </mat-card-header>
   <mat-card-header>
     <mat-card-title-group class="card__title-group">
-      <mat-card-title class="card__title">{{
-        newsItem().mainTitle
-      }}</mat-card-title>
+      <mat-card-title
+        class="card__title"
+        [class.truncate-2]="!isDetailsMode()"
+        >{{ newsItem().mainTitle }}</mat-card-title
+      >
       <mat-card-subtitle class="card__subtitle">
         <b>Source:</b> {{ newsItem().source }}</mat-card-subtitle
       >
@@ -13,10 +23,6 @@
           newsItem().timestamp | date: 'yyyy/MM/dd' : 'UTC'
         }}</mat-card-subtitle
       >
-      <app-img-render
-        [newsItemUrl]="newsItem().images?.smallImageDetailsProxied"
-        [title]="newsItem().mainTitle"
-      />
     </mat-card-title-group>
   </mat-card-header>
 
