@@ -114,29 +114,6 @@
   }
 }
 
-.news-modal__images-preview {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-
-  img {
-    height: 56px;
-    width: 100px;
-    object-fit: cover;
-    border-radius: 4px;
-    border: 1px solid var(--nm-border);
-    background: #f5f5f5;
-  }
-
-  &-meta {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    font-size: 13px;
-    color: var(--nm-muted);
-  }
-}
-
 .news-modal__field.ng-invalid.ng-touched,
 .news-modal__subnews-item.ng-invalid.ng-touched {
   ::ng-deep .mat-form-field-outline {

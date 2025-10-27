@@ -99,10 +99,6 @@
 }
 
 .truncate {
-  // &__text {
-  //   line-height: 1.2;
-  // }
-
   &__lines-2 {
     @include line-clamp(2);
   }
