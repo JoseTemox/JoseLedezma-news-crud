@@ -39,6 +39,7 @@ A modern application built with Angular 20+, designed with best development prac
 ### Frontend
 
 - **Framework:** Angular 20.1.0
+- **UI:** Angular Material 20.2.10
 - **Language:** TypeScript 5.8.2
 - **Testing:** Jasmine 5.8.0 + Karma 6.4.0
 - **Package Manager:** npm
