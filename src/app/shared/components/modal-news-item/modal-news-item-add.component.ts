@@ -28,6 +28,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { FormUtils } from '../../../utils/form-utils';
 import { DatePipe } from '@angular/common';
 import { urlFormatValidator } from '../../../utils/url-format-checker';
+import { FormDetails } from '../../../utils/consts';
 
 @Component({
   selector: 'app-modal-news-item',
@@ -74,11 +75,15 @@ export class ModalNewsItemAddComponent {
       timestamp: [
         {
           value: data?.timestamp
-            ? this.datePipe.transform(data?.timestamp, 'yyyy-MM-dd', 'UTC')
+            ? this.datePipe.transform(
+                data?.timestamp,
+                FormDetails.DateFormat,
+                FormDetails.UTC
+              )
             : this.datePipe.transform(
                 new Date().getTime(),
-                'yyyy-MM-dd',
-                'UTC'
+                FormDetails.DateFormat,
+                FormDetails.UTC
               ),
           disabled: true,
         },
@@ -101,13 +106,13 @@ export class ModalNewsItemAddComponent {
                 value: data?.timestamp
                   ? this.datePipe.transform(
                       item?.timestamp,
-                      'yyyy-MM-dd',
-                      'UTC'
+                      FormDetails.DateFormat,
+                      FormDetails.UTC
                     )
                   : this.datePipe.transform(
                       new Date().getTime(),
-                      'yyyy-MM-dd',
-                      'UTC'
+                      FormDetails.DateFormat,
+                      FormDetails.UTC
                     ),
                 disabled: true,
               },

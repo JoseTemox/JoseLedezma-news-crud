@@ -24,10 +24,9 @@ export class ModalMessagesComponent {
   private dialogRef = inject(MatDialogRef<ModalMessagesComponent, boolean>);
   data = inject(MAT_DIALOG_DATA) as ConfirmDeleteData | null;
 
-  title = this.data?.title ?? 'Eliminar elemento';
-  message =
-    this.data?.message ?? '¿Está seguro que desea eliminar este elemento?';
-  confirmLabel = this.data?.confirmLabel ?? 'Sí';
+  title = this.data?.title ?? 'Delete element';
+  message = this.data?.message ?? '¿Are you sure?';
+  confirmLabel = this.data?.confirmLabel ?? 'Yes';
   cancelLabel = this.data?.cancelLabel ?? 'No';
 
   confirm(): void {

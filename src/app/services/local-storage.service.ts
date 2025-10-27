@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { NewsItemMainTable } from '../interfaces/news.interfaces';
+import { LocalStorageKey } from '../utils/consts';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocalStorageService {
-  private readonly DATA_USER_KEY = 'userData';
+  private readonly DATA_USER_KEY = LocalStorageKey.userData;
 
   private getAllUserData(): NewsItemMainTable[] {
     const raw = localStorage.getItem(this.DATA_USER_KEY);

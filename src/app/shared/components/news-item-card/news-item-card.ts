@@ -7,6 +7,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ImgRender } from '../img-render/img-render.component';
 import { TruncateTextPipe } from '../../pipes/truncate-text-pipe';
+import { FormDetails } from '../../../utils/consts';
 
 @Component({
   selector: 'app-news-item-card',
@@ -25,6 +26,7 @@ import { TruncateTextPipe } from '../../pipes/truncate-text-pipe';
 export class NewsItemCard {
   readonly newsItem = input.required<NewsItemMain>();
   readonly isDetailsMode = input(false);
+  FormDetails = FormDetails;
 
   private readonly dialog = inject(MatDialog);
 

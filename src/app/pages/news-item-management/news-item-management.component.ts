@@ -17,6 +17,7 @@ import { MatButton } from '@angular/material/button';
 import { ModalMessagesComponent } from '../../shared/components/modal-messages/modal-messages.component';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { NewsFacade } from '../../services/news-facade.service';
+import { ActionBtn } from '../../utils/consts';
 
 @Component({
   selector: 'app-news-item-management',
@@ -50,10 +51,10 @@ export default class NewsItemManagementComponent {
       dialogConfig: MatDialogConfig
     ) => void;
   } = {
-    edit: (event: ActionEmitter) => {
+    [ActionBtn.edit]: (event: ActionEmitter) => {
       this.addNew(event.row());
     },
-    delete: (event: ActionEmitter) => {
+    [ActionBtn.delete]: (event: ActionEmitter) => {
       const data: NewsItemMainTable = event.row();
       const dialogRef = this.dialog.open(ModalMessagesComponent, {
         data: {
@@ -79,7 +80,10 @@ export default class NewsItemManagementComponent {
         }
       });
     },
-    find_in_page: (event: ActionEmitter, dialogConfig: MatDialogConfig) => {
+    [ActionBtn.find_in_page]: (
+      event: ActionEmitter,
+      dialogConfig: MatDialogConfig
+    ) => {
       dialogConfig.disableClose = false;
       dialogConfig.data = event.row() as NewsItemMain;
       this.dialog.open(ModalCardDetailsComponent, dialogConfig);

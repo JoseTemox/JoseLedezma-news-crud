@@ -7,6 +7,7 @@ import { of } from 'rxjs';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { NewsFacade } from '../../services/news-facade.service';
 import { CommonModule } from '@angular/common';
+import { ActionBtn } from '../../utils/consts';
 
 describe('NewsItemManagementComponent', () => {
   let mockDialog: jasmine.SpyObj<MatDialog>;
@@ -26,7 +27,7 @@ describe('NewsItemManagementComponent', () => {
   beforeEach(async () => {
     mockFacade = {
       allData: createSignalLike<any[]>([]),
-      actions: ['edit', 'delete', 'find_in_page'],
+      actions: [ActionBtn.edit, ActionBtn.delete, ActionBtn.find_in_page],
       deleteItem: jasmine.createSpy('deleteItem'),
       saveFixedData: jasmine.createSpy('saveFixedData'),
       updateData: jasmine.createSpy('updateData'),

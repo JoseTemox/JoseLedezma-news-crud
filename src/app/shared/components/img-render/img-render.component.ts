@@ -1,5 +1,6 @@
 import { Component, effect, input, signal } from '@angular/core';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { ImageUrlFixed } from '../../../utils/consts';
 
 @Component({
   selector: 'app-img-render',
@@ -21,7 +22,7 @@ export class ImgRender {
   readonly failed = signal(false);
 
   readonly currentSrc = signal<string | undefined>(undefined);
-  readonly fallback = './no-image.jpg';
+  readonly fallback = ImageUrlFixed.noImage;
 
   get styleWidth(): string | null {
     return this.toCssValue(this.width());

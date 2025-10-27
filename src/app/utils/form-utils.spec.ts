@@ -54,7 +54,7 @@ describe('FormUtils', () => {
 
       (ctrl as any).errors = {};
       const msg = FormUtils.getFielError(g, 'maybe') ?? '';
-      expect(msg).toContain('Error de validación no controlado');
+      expect(msg).toContain('Validation error not controlled');
     });
 
     it('returns required message when control has required error', () => {
@@ -63,9 +63,7 @@ describe('FormUtils', () => {
       });
       const ctrl = g.controls['title'];
       ctrl.setErrors({ required: true });
-      expect(FormUtils.getFielError(g, 'title')).toBe(
-        'Este campo es requerido'
-      );
+      expect(FormUtils.getFielError(g, 'title')).toBe('This field is required');
     });
 
     it('returns minlength message when control has minlength error', () => {
@@ -74,7 +72,7 @@ describe('FormUtils', () => {
       });
       const ctrl = g.controls['code'];
       ctrl.setErrors({ minlength: { requiredLength: 3, actualLength: 1 } });
-      expect(FormUtils.getFielError(g, 'code')).toBe('Mínimo de 3 caracteres');
+      expect(FormUtils.getFielError(g, 'code')).toBe('Min 3 characters');
     });
 
     it('returns custom message for unknown error keys', () => {
@@ -84,7 +82,7 @@ describe('FormUtils', () => {
       const ctrl = g.controls['x'];
       ctrl.setErrors({ someCustom: true });
       const msg = FormUtils.getFielError(g, 'x') ?? '';
-      expect(msg).toContain('Error de validación no controlado');
+      expect(msg).toContain('Validation error not controlled');
     });
   });
 
@@ -131,27 +129,27 @@ describe('FormUtils', () => {
       const child = (arr.at(0) as FormGroup).controls['title'];
       child.setErrors({ minlength: { requiredLength: 5, actualLength: 2 } });
       const txt = FormUtils.getFielErrorInArray(arr, 0, 'title');
-      expect(txt).toBe('Mínimo de 5 caracteres');
+      expect(txt).toBe('Min 5 characters');
     });
   });
 
   describe('getTextErrors', () => {
     it('handles required, minlength and invalidUrlFormat keys', () => {
       expect(FormUtils.getTextErrors({ required: true })).toBe(
-        'Este campo es requerido'
+        'This field is required'
       );
       expect(
         FormUtils.getTextErrors({ minlength: { requiredLength: 2 } })
-      ).toBe('Mínimo de 2 caracteres');
+      ).toBe('Min 2 characters');
       expect(FormUtils.getTextErrors({ invalidUrlFormat: true })).toBe(
-        'Formato de url invalido'
+        'Url format invalid'
       );
     });
 
     it('returns generic message for unknown error object', () => {
       const errors = { unknownErr: { info: 1 } };
       const out = FormUtils.getTextErrors(errors);
-      expect(out).toContain('Error de validación no controlado');
+      expect(out).toContain('Validation error not controlled');
     });
 
     it('returns null for null/undefined errors', () => {

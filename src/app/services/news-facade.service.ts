@@ -11,6 +11,7 @@ import {
   ResultElementImage,
 } from '../interfaces/iaGenerator.interface';
 import { IaGeneratorMapper } from '../mappers/iagenerator-mapper';
+import { ActionBtn, IAConstApi } from '../utils/consts';
 
 @Injectable({
   providedIn: 'root',
@@ -52,7 +53,11 @@ export class NewsFacade {
       });
   }
   get actions(): Action[] {
-    return [{ name: 'find_in_page' }, { name: 'edit' }, { name: 'delete' }];
+    return [
+      { name: ActionBtn.find_in_page },
+      { name: ActionBtn.edit },
+      { name: ActionBtn.delete },
+    ];
   }
 
   constructor() {
@@ -75,8 +80,8 @@ export class NewsFacade {
   iaTitleNewsGenerator(title: string): Observable<ResultElementImage> {
     const data: GeneratorRequest = {
       prompt: title,
-      style_id: 68,
-      size: '1-1',
+      style_id: IAConstApi.styleId,
+      size: IAConstApi.size,
     };
     return this.iaGeneratorService
       .create(data)

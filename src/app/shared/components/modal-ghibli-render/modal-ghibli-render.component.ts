@@ -14,6 +14,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { NewsFacade } from '../../../services/news-facade.service';
 import { ImgRender } from '../img-render/img-render.component';
 import { rxResource } from '@angular/core/rxjs-interop';
+import { ImageUrlFixed } from '../../../utils/consts';
 
 @Component({
   selector: 'app-modal-ghibli-render',
@@ -33,6 +34,7 @@ import { rxResource } from '@angular/core/rxjs-interop';
   styleUrl: './modal-ghibli-render.component.scss',
 })
 export class ModalGhibliRenderComponent {
+  ImageUrlFixed = ImageUrlFixed;
   private readonly dialogRef = inject(MatDialogRef<ModalGhibliRenderComponent>);
   modalData = inject<{ newsTitle: string }>(MAT_DIALOG_DATA);
   private readonly newsFacadeService = inject(NewsFacade);

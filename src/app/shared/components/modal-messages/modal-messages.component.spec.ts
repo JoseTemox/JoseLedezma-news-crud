@@ -41,11 +41,9 @@ describe('ModalMessagesComponent', () => {
 
   it('should use default labels and messages when no data provided', () => {
     fixture.detectChanges();
-    expect(component.title).toBe('Eliminar elemento');
-    expect(component.message).toBe(
-      '¿Está seguro que desea eliminar este elemento?'
-    );
-    expect(component.confirmLabel).toBe('Sí');
+    expect(component.title).toBe('Delete element');
+    expect(component.message).toBe('¿Are you sure?');
+    expect(component.confirmLabel).toBe('Yes');
     expect(component.cancelLabel).toBe('No');
   });
 

@@ -14,6 +14,7 @@ import {
   NewsDtoResponse,
   NewsItemMainTable,
 } from '../interfaces/news.interfaces';
+import { ActionBtn } from '../utils/consts';
 
 describe('NewsFacade', () => {
   let injector: Injector;
@@ -47,7 +48,11 @@ describe('NewsFacade', () => {
     const facade = runInInjectionContext(injector, () => new NewsFacade());
     const acts = facade.actions;
     expect(Array.isArray(acts)).toBeTrue();
-    expect(acts.map((a) => a.name)).toEqual(['find_in_page', 'edit', 'delete']);
+    expect(acts.map((a) => a.name)).toEqual([
+      ActionBtn.find_in_page,
+      ActionBtn.edit,
+      ActionBtn.delete,
+    ]);
   });
 
   it('setData/updateData/deleteItem/saveFixedData should delegate to LocalStorageService', () => {

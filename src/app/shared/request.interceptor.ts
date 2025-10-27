@@ -24,6 +24,7 @@ export function requestInterceptor(
 
   return next(newReq).pipe(
     catchError(({ error }) => {
+      console.error(error);
       dialog.open(ModalMessagesComponent, {
         data: {
           title: 'Error',
