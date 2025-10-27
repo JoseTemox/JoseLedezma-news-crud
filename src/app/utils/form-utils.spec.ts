@@ -1,4 +1,4 @@
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormUtils } from './form-utils';
 
 describe('FormUtils', () => {

@@ -157,5 +157,12 @@ module.exports = tseslint.config(
       '@angular-eslint/template/prefer-self-closing-tags': 'warn',
       '@angular-eslint/template/use-track-by-function': 'warn',
     },
+  },
+  {
+    files: ['**/*.spec.ts', '**/*.spec.tsx', '**/*.test.ts', '**/*.test.tsx'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/explicit-function-return-type': 'off',
+    },
   }
 );

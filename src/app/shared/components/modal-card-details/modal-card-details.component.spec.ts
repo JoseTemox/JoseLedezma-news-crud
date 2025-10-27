@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ModalCardDetailsComponent } from './modal-card-details.component';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NewsItemMain } from '../../../interfaces/news.interfaces';
 import { NewsItemCard } from '../news-item-card/news-item-card';
 import { CommonModule } from '@angular/common';

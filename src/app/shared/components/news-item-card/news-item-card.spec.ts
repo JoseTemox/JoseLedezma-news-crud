@@ -9,7 +9,7 @@ import { of } from 'rxjs';
   template: `<app-news-item-card
     [isDetailsMode]="details"
     [newsItem]="item"
-  ></app-news-item-card>`,
+  />`,
   standalone: true,
   imports: [NewsItemCard],
 })

@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { MatPaginator } from '@angular/material/paginator';
 import { TableComponent } from './table.component';
-import { ColumnHeader } from './table.interfaces';
 
 describe('TableComponent (unit, direct instantiation, no MatTableDataSource)', () => {
   let comp: TableComponent;

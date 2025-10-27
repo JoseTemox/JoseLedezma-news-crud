@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { TestBed } from '@angular/core/testing';
 import { Injector, runInInjectionContext } from '@angular/core';
 import { of } from 'rxjs';

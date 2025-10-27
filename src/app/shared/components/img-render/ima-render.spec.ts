@@ -14,7 +14,7 @@ describe('ImgRender (standalone unit tests)', () => {
     injector = TestBed.inject(Injector);
   });
 
-  function createInstance(initialUrl?: string | undefined) {
+  function createInstance() {
     return runInInjectionContext(injector, () => new ImgRender()) as ImgRender;
   }
 

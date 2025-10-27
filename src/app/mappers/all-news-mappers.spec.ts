@@ -1,5 +1,4 @@
 import { AllNewsMapper } from './all-news-mappers';
-import { ImagesMapper } from './images-mappers';
 import { NewsItem, NewsItemMain } from '../interfaces/news.interfaces';
 
 describe('AllNewsMapper', () => {

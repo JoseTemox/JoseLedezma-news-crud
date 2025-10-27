@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { ModalGhibliRenderComponent } from './modal-ghibli-render.component';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NewsFacade } from '../../../services/news-facade.service';
 import { ImgRender } from '../img-render/img-render.component';
 import { CommonModule } from '@angular/common';

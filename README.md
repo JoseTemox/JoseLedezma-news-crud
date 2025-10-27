@@ -9,7 +9,7 @@
 ![Testing](https://img.shields.io/badge/Testing-Jasmine/Karma-green?style=for-the-badge&logo=jasmine&logoColor=white)
 ![Coverage](https://img.shields.io/badge/Coverage-Code%20coverage-orange?style=for-the-badge)
 
-A modern application built with Angular 20+, designed with best development practices and automated testing two see currents entertainment news and generate IA image in ghibli style by news's title.
+A modern application built with Angular 20+, designed with best development practices and automated testing to see currents entertainment news and generate IA image in ghibli style by news's title.
 
 ## ✨ Features
 
