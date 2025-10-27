@@ -16,6 +16,46 @@ import {
 } from '../interfaces/news.interfaces';
 import { ActionBtn } from '../utils/consts';
 
+const sampleItem: NewsItemMainTable = {
+  number: 1,
+  mainTitle: 'Main title',
+  summary: 'Summary text',
+  timestamp: '2025-10-27T00:00:00Z',
+  images: { smallImageDetailsProxied: 'img.jpg', smallImageDetails: 'img.jpg' },
+  source: 'Test source',
+  newsLink: 'https://example.com',
+  actions: [],
+};
+
+const NewsItemArray: NewsItemMainTable[] = [
+  {
+    number: 1,
+    mainTitle: 'Main title',
+    summary: 'Summary text',
+    timestamp: '2025-10-27T00:00:00Z',
+    images: {
+      smallImageDetailsProxied: 'img.jpg',
+      smallImageDetails: 'img.jpg',
+    },
+    source: 'Test source',
+    newsLink: 'https://example.com',
+    actions: [],
+  },
+  {
+    number: 2,
+    mainTitle: '2Main title',
+    summary: '2Summary text',
+    timestamp: '2025-10-27T00:00:00Z',
+    images: {
+      smallImageDetailsProxied: 'img.jpg',
+      smallImageDetails: 'img.jpg',
+    },
+    source: '2Test source',
+    newsLink: 'https://example.com',
+    actions: [],
+  },
+];
+
 describe('NewsFacade', () => {
   let injector: Injector;
   let mockApi: jasmine.SpyObj<NewsApiService>;
@@ -112,5 +152,89 @@ describe('NewsFacade', () => {
       expect(mockLocalStorage.saveFixedData).toHaveBeenCalledWith([]);
       done();
     }, 0);
+  });
+
+  it('saveNewsItemInList should prepend item, reindex, and call saveFixedData', () => {
+    const facade = runInInjectionContext(injector, () => new NewsFacade());
+
+    facade.allData.set([sampleItem as NewsItemMainTable]);
+
+    const newItem = {
+      number: 1,
+      mainTitle: 'Main title New',
+      summary: 'Summary text New',
+      timestamp: '2025-10-27T00:00:00Z',
+      images: {
+        smallImageDetailsProxied: 'img.jpg',
+        smallImageDetails: 'img.jpg',
+      },
+      source: 'Test source New',
+      newsLink: 'https://example.com',
+      actions: [],
+    } as NewsItemMainTable;
+
+    facade.saveNewsItemInList(newItem);
+
+    const result = facade.allData();
+    expect(result.length).toBe(2);
+    expect(result[0].mainTitle).toBe('Main title New');
+    expect(result[0].number).toBe(1);
+    expect(result[1].number).toBe(2);
+    expect(mockLocalStorage.saveFixedData).toHaveBeenCalledWith(result);
+  });
+
+  it('updateNewsItemInList should replace matching item and call updateData', () => {
+    const facade = runInInjectionContext(injector, () => new NewsFacade());
+
+    facade.allData.set(NewsItemArray);
+
+    const updated = {
+      number: 2,
+      mainTitle: '2Main title Updated',
+      summary: '2Summary text',
+      timestamp: '2025-10-27T00:00:00Z',
+      images: {
+        smallImageDetailsProxied: 'img.jpg',
+        smallImageDetails: 'img.jpg',
+      },
+      source: '2Test source',
+      newsLink: 'https://example.com',
+      actions: [],
+    } as NewsItemMainTable;
+
+    facade.updateNewsItemInList(updated, updated);
+
+    const result = facade.allData();
+    expect(result.find((i) => i.number === 2)?.mainTitle).toBe(
+      '2Main title Updated'
+    );
+    expect(mockLocalStorage.updateData).toHaveBeenCalledWith(updated);
+  });
+
+  it('deleteNewsItemInList should remove matching item and call deleteItem', () => {
+    const facade = runInInjectionContext(injector, () => new NewsFacade());
+
+    facade.allData.set(NewsItemArray);
+
+    const toDelete = {
+      number: 1,
+      mainTitle: 'Main title',
+      summary: 'Summary text',
+      timestamp: '2025-10-27T00:00:00Z',
+      images: {
+        smallImageDetailsProxied: 'img.jpg',
+        smallImageDetails: 'img.jpg',
+      },
+      source: 'Test source',
+      newsLink: 'https://example.com',
+      actions: [],
+    } as NewsItemMainTable;
+
+    facade.deleteNewsItemInList(toDelete);
+
+    const result = facade.allData();
+    expect(result.length).toBe(1);
+    expect(result[0].number).toBe(2);
+    expect(mockLocalStorage.deleteItem).toHaveBeenCalledWith(toDelete);
   });
 });

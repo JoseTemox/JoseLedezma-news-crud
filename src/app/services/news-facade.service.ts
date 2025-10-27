@@ -64,6 +64,41 @@ export class NewsFacade {
     this.loadAll();
   }
 
+  saveNewsItemInList(dataResponseWithActions: NewsItemMainTable): void {
+    this.allData.update((list) =>
+      [dataResponseWithActions, ...list].map((item, index) => ({
+        ...item,
+        number: index + 1,
+      }))
+    );
+    this.saveFixedData(this.allData());
+  }
+
+  updateNewsItemInList(
+    dataResponseWithActions: NewsItemMainTable,
+    modalResponse: NewsItemMainTable
+  ): void {
+    this.allData.update((list) =>
+      list.map((item) =>
+        item.number === modalResponse.number ? dataResponseWithActions : item
+      )
+    );
+    this.updateData(dataResponseWithActions);
+  }
+
+  deleteNewsItemInList(data: NewsItemMainTable): void {
+    this.allData.update((list) => {
+      const idx = list.findIndex((i) => i.number === data.number);
+      if (idx === -1) {
+        return list;
+      }
+      const copy = list.slice();
+      copy.splice(idx, 1);
+      return copy;
+    });
+    this.deleteItem(data);
+  }
+
   setData(data: NewsItemMainTable): void {
     this.localStorageService.setData(data);
   }

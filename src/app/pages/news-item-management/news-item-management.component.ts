@@ -67,16 +67,7 @@ export default class NewsItemManagementComponent {
 
       dialogRef.afterClosed().subscribe((confirmed: boolean | undefined) => {
         if (confirmed) {
-          this.dataSource.update((list) => {
-            const idx = list.findIndex((i) => i.number === data.number);
-            if (idx === -1) {
-              return list;
-            }
-            const copy = list.slice();
-            copy.splice(idx, 1);
-            return copy;
-          });
-          this.facadeNewsService.deleteItem(data);
+          this.facadeNewsService.deleteNewsItemInList(data);
         }
       });
     },
@@ -106,23 +97,13 @@ export default class NewsItemManagementComponent {
         actions: this.facadeNewsService.actions,
       };
       if (modalResponse && modalResponse?.number === null) {
-        this.dataSource.update((list) =>
-          [dataResponseWithActions, ...list].map((item, index) => ({
-            ...item,
-            number: index + 1,
-          }))
-        );
-        this.facadeNewsService.saveFixedData(this.dataSource());
+        this.facadeNewsService.saveNewsItemInList(dataResponseWithActions);
       }
       if (modalResponse && modalResponse.number !== null) {
-        this.dataSource.update((list) =>
-          list.map((item) =>
-            item.number === modalResponse.number
-              ? dataResponseWithActions
-              : item
-          )
+        this.facadeNewsService.updateNewsItemInList(
+          dataResponseWithActions,
+          modalResponse
         );
-        this.facadeNewsService.updateData(dataResponseWithActions);
       }
     });
   }

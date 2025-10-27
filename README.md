@@ -137,9 +137,9 @@ The App contain two api request:
 <br>
 
 - **Environment:** Google Chrome (Version 140.0.0.0) on Windows 10
-- **Tests Executed:** 118
-- **Status:** **118 out of 118 tests passed** 🎉
-- **Total Time:** 7.352 seconds
+- **Tests Executed:** 121
+- **Status:** **121 out of 121 tests passed** 🎉
+- **Total Time:** 1.176 seconds
 
 <br>
 
@@ -159,10 +159,10 @@ Code coverage shows the percentage of your source code that has been covered by 
 
 <br>
 
-- **Statements:** 95.58% ( 325/340 )
-- **Branches:** 91.12% ( 113/124 )
-- **Functions:** 92.15% ( 94/102 )
-- **Lines:** 95.37% (309 of 324)
+- **Statements:** 96.38% ( 347/360 )
+- **Branches:** 91.66% ( 121/132 )
+- **Functions:** 94.54% ( 104/110 )
+- **Lines:** 96.22% ( 331/344 )
 
 <br>
 
