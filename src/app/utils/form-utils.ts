@@ -35,7 +35,6 @@ export class FormUtils {
       return null;
     }
 
-    // devolver si tiene errores y el formArray/child fue tocado
     return !!child.errors && !!child.touched;
   }
 
@@ -64,14 +63,14 @@ export class FormUtils {
     }
 
     const handlers: Record<string, (err: any) => string> = {
-      required: () => 'Este campo es requerido',
-      minlength: (e) => `Mínimo de ${e.requiredLength} caracteres`,
-      invalidUrlFormat: () => `Formato de url invalido`,
+      required: () => 'This field is required',
+      minlength: (e) => `Min ${e.requiredLength} characters`,
+      invalidUrlFormat: () => `Url format invalid`,
     };
 
     const key = Object.keys(errors).find((k) => k in handlers);
     return key
       ? handlers[key](errors[key])
-      : `Error de validación no controlado ${Object.keys(errors)[0]}`;
+      : `Validation error not controlled ${Object.keys(errors)[0]}`;
   }
 }

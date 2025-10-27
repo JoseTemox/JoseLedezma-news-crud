@@ -156,12 +156,10 @@ thead {
 .mat-mdc-row .mat-mdc-cell {
   border-bottom: 3px solid gray;
   border-top: 3px solid gray;
-  //   cursor: pointer;
 }
 
 .mat-mdc-row:hover .mat-mdc-cell {
   background: var(--mat-sys-primary);
-  //   border-color: blue;
 }
 
 .inputSearchContainer {
@@ -170,16 +168,12 @@ thead {
   justify-content: center;
   align-items: flex-start;
   align-content: flex-start;
-  // width: 65%;
-  // background-color: #2f1d58;
-  // height: 80vh;
   overflow: auto;
   flex-direction: row;
 }
 
 .inputSearchContainer div {
   width: 50%;
-  // height: 101px;
   margin: 10px;
   background-color: lightblue;
 }
