@@ -11,6 +11,19 @@
 
 A modern application built with Angular 20+, designed with best development practices and automated testing to see currents entertainment news and generate IA image in ghibli style by news's title.
 
+### Development Requirements
+
+- ✅ Build app in Angular 5+
+- ✅ App responsive
+- ✅ App with Ability for CRUD
+- ✅ Work temporarily with the API DATA
+- ✅ If we refresh the page, the data should return to its initial state.
+- ✅ Data in memory (localStorage)..
+- ✅ Validation of inputs with respect to the data that needs to be entered.
+- ✅ Deploy on some free server: https://news-entertainment-crud.netlify.app/#/home
+
+---
+
 ## ✨ Features
 
 - **🔄 Angular 20+** - Modern and performant framework
