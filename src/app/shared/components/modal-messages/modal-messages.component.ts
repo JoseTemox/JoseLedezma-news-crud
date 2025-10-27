@@ -12,7 +12,7 @@ export type ConfirmDeleteData = {
   message?: string;
   confirmLabel?: string;
   cancelLabel?: string;
-}
+};
 
 @Component({
   selector: 'app-modal-messages',
