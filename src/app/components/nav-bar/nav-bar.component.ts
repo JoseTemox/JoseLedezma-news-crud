@@ -12,10 +12,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 export class NavBarComponent {
   readonly isMenuOpen = signal(false);
 
-  // isMenuOpen = false;
-
   toggleMenu(): void {
-    // this.isMenuOpen = !this.isMenuOpen;
     this.isMenuOpen.update((open) => !open);
   }
   routes = routes
